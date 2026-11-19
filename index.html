@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>aurelia store — ช่องทางการโอนเงิน (Demo)</title>
-
     <!-- Google Fonts: Prompt (ภาษาไทยอ่านง่าย สบายตา) & Fredoka (หัวข้อภาษาอังกฤษน่ารัก) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <script>
         tailwind.config = {
             theme: {
@@ -48,7 +44,6 @@
             }
         }
     </script>
-
     <style>
         /* พื้นหลังสไตล์ Neapolitan Pastel (ชมพูสตรอว์เบอร์รี ครีมวานิลลา น้ำตาลช็อกโกแลต) */
         body {
@@ -61,7 +56,6 @@
             color: #5E4036;
             overflow-x: auto;
         }
-
         /* ตัวเครื่องสมาร์ทโฟนแนวตั้งทรงสูง 390px x 780px ล็อกขนาด 100% คงที่ */
         .phone-chassis {
             position: relative;
@@ -82,7 +76,6 @@
                 0 0 0 6px #FFC8D9,
                 inset 0 2px 6px rgba(255, 255, 255, 0.9);
         }
-
         /* ปุ่มกดด้านข้างตัวเครื่อง */
         .phone-btn-left-1 {
             position: absolute;
@@ -120,14 +113,12 @@
             background: #FFA4C0;
             border-radius: 0 4px 4px 0;
         }
-
         /* พื้นผิวหน้าจอภายในสมาร์ทโฟน */
         .phone-screen {
             background-color: #FFF8F3;
             background-image: radial-gradient(#FFC8D9 1px, transparent 1px);
             background-size: 20px 20px;
         }
-
         /* แถบเลื่อนภายในหน้าจอโทรศัพท์ */
         .phone-scroll::-webkit-scrollbar {
             width: 5px;
@@ -142,7 +133,6 @@
         .phone-scroll::-webkit-scrollbar-thumb:hover {
             background: #FFA4C0;
         }
-
         /* ขอบหยักลูกไม้สไตล์ Coquette */
         .lace-divider {
             height: 12px;
@@ -151,7 +141,6 @@
             background-size: 20px 12px;
             background-repeat: repeat-x;
         }
-
         /* การ์ดสไตล์น่ารัก สะอาดตา ไม่รก */
         .coquette-card {
             background: rgba(255, 253, 251, 0.96);
@@ -159,17 +148,14 @@
             box-shadow: 0 6px 18px -4px rgba(141, 102, 89, 0.08), 0 3px 0 #FFE4EC;
             transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
         }
-
         .coquette-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 22px -4px rgba(244, 93, 139, 0.14), 0 4px 0 #FFC8D9;
         }
-
         /* กรอบโลโก้วงกลม */
         .logo-scallop-ring {
             box-shadow: 0 0 0 4px #FFFDFB, 0 0 0 7px #FFC8D9, 0 8px 16px rgba(94, 64, 54, 0.12);
         }
-
         /* เอฟเฟกต์ปุ่มกด */
         .btn-bounce {
             transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -177,7 +163,6 @@
         .btn-bounce:active {
             transform: scale(0.95);
         }
-
         /* สัดส่วนแบนเนอร์ 1920x800 (2.4 : 1) */
         .banner-aspect {
             aspect-ratio: 1920 / 800;
@@ -185,34 +170,29 @@
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 selection:bg-strawberry-200 selection:text-mocha-800">
-
     <!-- ==================== กรอบจำลองสมาร์ทโฟนแนวตั้งทรงสูง (390px x 780px) ล็อกขนาด 100% คงที่ ==================== -->
     <div class="phone-chassis flex flex-col">
-
         <!-- ปุ่มกดข้างตัวเครื่องโทรศัพท์ -->
         <div class="phone-btn-left-1" aria-hidden="true"></div>
         <div class="phone-btn-left-2" aria-hidden="true"></div>
         <div class="phone-btn-left-3" aria-hidden="true"></div>
         <div class="phone-btn-right" aria-hidden="true"></div>
-
         <!-- ==================== หน้าจอภายในโทรศัพท์ ==================== -->
         <div class="phone-screen w-full flex-1 rounded-[40px] border-2 border-mocha-700/15 overflow-hidden flex flex-col relative shadow-inner">
-
-            <!-- แถบสถานะและ Dynamic Island ด้านบนจอโทรศัพท์ -->
-            <div class="flex items-center justify-between px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
-                <span id="phone-clock">09:41</span>
-                <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner">
+            <!-- แถบสถานะและ Dynamic Island ด้านบนจอโทรศัพท์ (จุดที่ 1: ปรับกรอบชื่อ aurelia ให้อยู่ตรงกลางพอดี) -->
+            <div class="grid grid-cols-[1fr_auto_1fr] items-center px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
+                <span id="phone-clock" class="justify-self-start">09:41</span>
+                <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner justify-self-center">
                     <span class="w-2 h-2 rounded-full bg-strawberry-400 animate-pulse"></span>
                     <span class="text-[9px] text-cream-100 font-cute tracking-wider">aurelia</span>
                     <span class="w-2.5 h-2.5 rounded-full bg-mocha-700 border border-mocha-500"></span>
                 </div>
-                <div class="flex items-center gap-1.5 text-mocha-700">
+                <div class="flex items-center gap-1.5 text-mocha-700 justify-self-end">
                     <i class="fa-solid fa-signal text-[10px]"></i>
                     <i class="fa-solid fa-wifi text-[10px]"></i>
                     <i class="fa-solid fa-battery-full text-xs text-strawberry-500"></i>
                 </div>
             </div>
-
             <!-- แถบเมนูสลับโหมด: หน้าบ้าน / หลังบ้าน (Demo) -->
             <header class="sticky top-0 z-20 bg-cream-50/95 backdrop-blur-md border-b-2 border-strawberry-200 px-3.5 py-2.5 shrink-0">
                 <div class="flex items-center justify-between gap-1.5">
@@ -227,7 +207,6 @@
                             <span class="text-[10px] text-strawberry-500 font-medium block">Payment Channels</span>
                         </div>
                     </div>
-
                     <nav class="flex items-center bg-cream-200 p-1 rounded-full border border-strawberry-200 shrink-0" aria-label="สลับโหมดหน้าบ้านและหลังบ้าน">
                         <button id="tab-customer" onclick="switchView('customer')"
                             class="btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all bg-strawberry-400 text-white shadow-sm">
@@ -242,25 +221,20 @@
                     </nav>
                 </div>
             </header>
-
             <!-- ==================== พื้นที่เนื้อหาเลื่อนขึ้น-ลงภายในจอโทรศัพท์ ==================== -->
             <main id="phone-scroll-area" class="flex-1 overflow-y-auto phone-scroll px-3.5 pt-4 pb-12 space-y-5">
-
                 <!-- 1. หน้าบ้าน (มุมมองลูกค้า) -->
                 <section id="view-customer" class="space-y-5">
-
                     <!-- การ์ดแบนเนอร์ 1920x800px + โลโก้ร้าน + ชื่อร้าน + คำต้อนรับ -->
                     <div class="coquette-card rounded-3xl overflow-hidden relative">
                         <div class="relative w-full banner-aspect bg-strawberry-100 overflow-hidden group">
                             <img id="display-banner" src="" alt="แบนเนอร์ร้าน aurelia store ขนาด 1920x800px"
                                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]">
-
                             <div class="absolute top-2 left-2 flex flex-wrap items-center gap-1">
                                 <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-mocha-700/85 text-cream-50 backdrop-blur-sm shadow">
                                     🏷️ DEMO 1920×800
                                 </span>
                             </div>
-
                             <label for="quick-banner-upload" title="อัปโหลดหรือเปลี่ยนแบนเนอร์ 1920x800px"
                                 class="btn-bounce cursor-pointer absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-cream-50/95 hover:bg-white text-mocha-700 text-[11px] font-medium border border-strawberry-300 shadow flex items-center gap-1">
                                 <i class="fa-solid fa-image text-strawberry-500"></i>
@@ -268,11 +242,10 @@
                             </label>
                             <input type="file" id="quick-banner-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'banner')">
                         </div>
-
                         <div class="lace-divider -mt-2 relative z-10"></div>
-
-                        <div class="px-4 pb-5 pt-1 text-center relative">
-                            <div class="relative inline-block -mt-12 mb-2.5">
+                        <!-- จุดที่ 2: ปรับ z-20 เพื่อให้โลโก้อยู่ข้างหน้าขอบระบายของแบนเนอร์ (lace-divider ที่มี z-10) -->
+                        <div class="px-4 pb-5 pt-1 text-center relative z-20">
+                            <div class="relative inline-block -mt-12 mb-2.5 z-20">
                                 <div class="w-20 h-20 rounded-full overflow-hidden bg-cream-100 logo-scallop-ring mx-auto relative">
                                     <img id="display-logo" src="" alt="โลโก้ร้าน aurelia store" class="w-full h-full object-cover">
                                 </div>
@@ -285,7 +258,6 @@
                                 </label>
                                 <input type="file" id="quick-logo-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'logo')">
                             </div>
-
                             <div class="flex items-center justify-center gap-1.5 mb-1">
                                 <span class="text-strawberry-400 text-xs">🍓</span>
                                 <h1 id="display-store-name" class="font-cute font-bold text-xl text-mocha-800 tracking-wide">
@@ -293,18 +265,15 @@
                                 </h1>
                                 <span class="text-strawberry-400 text-xs">🍫</span>
                             </div>
-
                             <p id="display-welcome-msg" class="text-xs text-mocha-500 leading-relaxed mt-1">
                                 ขอบคุณที่อุดหนุนร้านเรานะคะ 🎀 สามารถเลือกคัดลอกเลขบัญชี วอเล็ท หรือบันทึกรูป QR Code ด้านล่างได้เลยค่ะ
                             </p>
-
                             <div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-strawberry-100/80 border border-strawberry-200 text-[10px] text-mocha-700">
                                 <span class="w-1.5 h-1.5 rounded-full bg-strawberry-500 animate-pulse shrink-0"></span>
                                 <span><strong>DEMO:</strong> ข้อมูลบัญชีและ QR Code เป็นตัวอย่างสำหรับทดสอบ</span>
                             </div>
                         </div>
                     </div>
-
                     <!-- หัวข้อช่องทางการชำระเงิน -->
                     <div class="flex items-center justify-between px-1">
                         <h2 class="font-bold text-base text-mocha-800 flex items-center gap-1.5">
@@ -315,11 +284,9 @@
                             แตะเพื่อคัดลอก
                         </span>
                     </div>
-
                     <!-- รายการการ์ดบัญชี วอเล็ท และ QR Code -->
                     <div id="payment-cards-container" class="space-y-3.5"></div>
-
-                    <!-- ปุ่มแจ้งโอน (Demo) -->
+                    <!-- ปุ่มแจ้งโอน / ช่องทางการติดต่อ (จุดที่ 4: แสดงผลแบบไดนามิกจากข้อมูลแอดมิน) -->
                     <div class="coquette-card rounded-3xl p-4 bg-gradient-to-br from-cream-50 to-strawberry-100/40">
                         <div class="flex items-start gap-2.5 mb-3">
                             <div class="w-9 h-9 rounded-2xl bg-strawberry-100 border border-strawberry-200 flex items-center justify-center text-lg shrink-0">
@@ -332,33 +299,15 @@
                                 </p>
                             </div>
                         </div>
-
-                        <div class="space-y-2">
-                            <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะเปิดแชท LINE ของร้านค่ะ 💬')"
-                                class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-[#06C755] hover:bg-[#05b34c] text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-line text-base"></i>
-                                <span>แจ้งโอนทาง LINE</span>
-                                <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
-                            </button>
-
-                            <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะเปิด Instagram ของร้านค่ะ 🎀')"
-                                class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-gradient-to-r from-strawberry-400 to-strawberry-500 hover:opacity-95 text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-instagram text-base"></i>
-                                <span>แจ้งโอนทาง Instagram</span>
-                                <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
-                            </button>
-                        </div>
+                        <div id="contact-buttons-container" class="space-y-2"></div>
                     </div>
-
                     <footer class="text-center pt-2 pb-4 text-[11px] text-mocha-500">
                         <p class="font-cute font-medium text-xs text-mocha-700">🎀 aurelia store — Payment Channels 🎀</p>
                         <p class="text-[10px] mt-0.5">เทมเพลตตัวอย่าง (DEMO MODE)</p>
                     </footer>
                 </section>
-
                 <!-- 2. หน้าหลังบ้าน (Admin Demo - เก็บชั่วคราวใน LocalStorage ไม่มีรหัสผ่าน) -->
                 <section id="view-admin" class="hidden space-y-4">
-
                     <div class="rounded-3xl p-3.5 bg-amber-50 border-2 border-amber-300 text-amber-950 shadow-xs">
                         <div class="flex items-start gap-2.5">
                             <div class="w-8 h-8 rounded-xl bg-amber-200/80 text-amber-800 flex items-center justify-center text-sm shrink-0 mt-0.5">
@@ -374,7 +323,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- ฟอร์มตั้งค่าชื่อร้าน คำทักทาย แบนเนอร์ 1920x800px และโลโก้ -->
                     <div class="coquette-card rounded-3xl p-4 space-y-4">
                         <div class="flex items-center justify-between border-b border-strawberry-100 pb-2.5">
@@ -383,20 +331,17 @@
                             </h3>
                             <span class="text-[10px] px-2 py-0.5 rounded-full bg-strawberry-100 text-strawberry-500 font-semibold">DEMO</span>
                         </div>
-
                         <div class="space-y-3">
                             <div>
                                 <label class="block text-xs font-medium text-mocha-700 mb-1">ชื่อร้าน</label>
                                 <input type="text" id="admin-store-name" placeholder="aurelia store"
                                     class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs">
                             </div>
-
                             <div>
                                 <label class="block text-xs font-medium text-mocha-700 mb-1">คำต้อนรับลูกค้า</label>
                                 <textarea id="admin-welcome-msg" rows="2" placeholder="กรอกคำต้อนรับ..."
                                     class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs"></textarea>
                             </div>
-
                             <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
                                 <label class="block text-xs font-semibold text-mocha-800">1. โลโก้ร้าน</label>
                                 <input type="text" id="admin-logo-url" placeholder="ลิงก์รูปโลโก้ (https://...)"
@@ -407,7 +352,6 @@
                                     <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-logo-url')">
                                 </label>
                             </div>
-
                             <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
                                 <div class="flex items-center justify-between">
                                     <label class="text-xs font-semibold text-mocha-800">2. แบนเนอร์ (1920×800px)</label>
@@ -421,7 +365,6 @@
                                     <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-banner-url')">
                                 </label>
                             </div>
-
                             <button onclick="saveStoreSettings()"
                                 class="btn-bounce w-full py-3 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow flex items-center justify-center gap-1.5">
                                 <i class="fa-solid fa-floppy-disk"></i>
@@ -429,7 +372,6 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- จัดการช่องทางการโอนเงิน (เพิ่ม / แก้ไข / ลบ) -->
                     <div class="coquette-card rounded-3xl p-4 space-y-3.5">
                         <div class="flex items-center justify-between gap-2 border-b border-strawberry-100 pb-2.5">
@@ -442,10 +384,22 @@
                                 <span>เพิ่มใหม่</span>
                             </button>
                         </div>
-
                         <div id="admin-payment-list" class="space-y-2.5"></div>
                     </div>
-
+                    <!-- จุดที่ 4: จัดการช่องทางการติดต่อ (เพิ่ม / แก้ไข / ลบ / เปลี่ยนลิงก์) -->
+                    <div class="coquette-card rounded-3xl p-4 space-y-3.5">
+                        <div class="flex items-center justify-between gap-2 border-b border-strawberry-100 pb-2.5">
+                            <h3 class="font-bold text-sm text-mocha-800 flex items-center gap-1.5">
+                                <span>💬</span> ช่องทางการติดต่อแจ้งโอน
+                            </h3>
+                            <button onclick="openAddContactModal()"
+                                class="btn-bounce px-3 py-1.5 rounded-xl bg-mocha-700 hover:bg-mocha-800 text-cream-50 text-xs font-medium flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>เพิ่มใหม่</span>
+                            </button>
+                        </div>
+                        <div id="admin-contact-list" class="space-y-2.5"></div>
+                    </div>
                     <!-- ปุ่มรีเซ็ตข้อมูล Demo -->
                     <div class="pt-1 pb-4 text-center">
                         <button onclick="confirmResetDemo()"
@@ -455,20 +409,15 @@
                         </button>
                     </div>
                 </section>
-
             </main>
-
             <!-- แจ้งเตือน Toast ภายในหน้าจอโทรศัพท์ -->
             <div id="toast-container" class="absolute bottom-7 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex flex-col items-center gap-1.5 w-[88%]"></div>
-
             <!-- แถบ Home ด้านล่างจอโทรศัพท์ -->
             <div class="flex items-center justify-center py-2 bg-cream-50/95 shrink-0 select-none">
                 <div class="w-32 h-1.5 rounded-full bg-mocha-700/25"></div>
             </div>
-
         </div>
     </div>
-
     <!-- MODAL: เพิ่ม/แก้ไขช่องทางการโอนเงิน -->
     <div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-mocha-800/40 backdrop-blur-xs">
         <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
@@ -478,9 +427,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <input type="hidden" id="edit-payment-id">
-
             <div class="space-y-3.5">
                 <div>
                     <label class="block text-xs font-semibold text-mocha-700 mb-1">ประเภทช่องทาง</label>
@@ -491,32 +438,27 @@
                         <option value="qr">QR Code</option>
                     </select>
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อธนาคาร / ชื่อช่องทาง</label>
                     <input type="text" id="edit-payment-provider" placeholder="เช่น ธนาคารกสิกรไทย หรือ TrueMoney Wallet"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold text-mocha-700 mb-1">เลขบัญชี / เบอร์วอเล็ท / เบอร์พร้อมเพย์</label>
                     <input type="text" id="edit-payment-number" placeholder="เช่น 099-9-99999-9"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm font-mono">
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อบัญชี</label>
                     <input type="text" id="edit-payment-account-name" placeholder="เช่น aurelia store (DEMO)"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
                 </div>
-
                 <div id="qr-custom-image-box" class="hidden p-3 rounded-xl bg-strawberry-100/50 border border-strawberry-200 space-y-2">
                     <label class="block text-xs font-semibold text-mocha-800">อัปโหลดรูป QR Code (ถ้าไม่เลือกจะสร้างภาพ Demo อัตโนมัติ)</label>
                     <input type="file" accept="image/*" onchange="handleQrFileUpload(event)" class="text-xs w-full">
                     <input type="hidden" id="edit-payment-qr-data">
                 </div>
             </div>
-
             <div class="flex gap-2.5 pt-2">
                 <button onclick="closePaymentModal()"
                     class="flex-1 py-3 rounded-xl bg-cream-200 text-mocha-700 font-medium text-sm hover:bg-cream-300">
@@ -529,7 +471,53 @@
             </div>
         </div>
     </div>
-
+    <!-- จุดที่ 4: MODAL เพิ่ม/แก้ไขช่องทางการติดต่อ -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-mocha-800/40 backdrop-blur-xs">
+        <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-strawberry-100 pb-3">
+                <h4 id="contact-modal-title" class="font-bold text-lg text-mocha-800">เพิ่มช่องทางการติดต่อ</h4>
+                <button onclick="closeContactModal()" class="w-8 h-8 rounded-full bg-cream-200 text-mocha-700 hover:bg-strawberry-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <input type="hidden" id="edit-contact-id">
+            <div class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ประเภทช่องทาง / ไอคอนปุ่ม</label>
+                    <select id="edit-contact-platform"
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
+                        <option value="line">LINE</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook / Messenger</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="twitter">X / Twitter</option>
+                        <option value="other">ลิงก์ทั่วไป / เว็บไซต์</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ข้อความบนปุ่ม</label>
+                    <input type="text" id="edit-contact-label" placeholder="เช่น แจ้งโอนทาง LINE หรือ ทักแชทเพจร้าน"
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ลิงก์ช่องทางการติดต่อ (URL)</label>
+                    <input type="text" id="edit-contact-url" placeholder="เช่น https://line.me/ti/p/~yourid หรือเว้นว่างเพื่อทดสอบ Demo"
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
+                    <p class="text-[11px] text-mocha-500 mt-1">หากใส่ลิงก์ (ขึ้นต้นด้วย http:// หรือ https://) กดปุ่มแล้วจะเปิดไปยังลิงก์นั้นทันทีค่ะ</p>
+                </div>
+            </div>
+            <div class="flex gap-2.5 pt-2">
+                <button onclick="closeContactModal()"
+                    class="flex-1 py-3 rounded-xl bg-cream-200 text-mocha-700 font-medium text-sm hover:bg-cream-300">
+                    ยกเลิก
+                </button>
+                <button onclick="saveContactMethod()"
+                    class="flex-1 py-3 rounded-xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-sm shadow">
+                    บันทึก
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- MODAL: ยืนยันการรีเซ็ตข้อมูล Demo -->
     <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-mocha-800/40 backdrop-blur-xs">
         <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
@@ -550,7 +538,6 @@
             </div>
         </div>
     </div>
-
     <script>
         // สร้างรูปแบนเนอร์ 1920x800px ตัวอย่าง (Demo)
         function generateDefaultBannerDataUrl() {
@@ -558,54 +545,44 @@
             canvas.width = 1920;
             canvas.height = 800;
             const ctx = canvas.getContext('2d');
-
             const grad = ctx.createLinearGradient(0, 0, 1920, 800);
             grad.addColorStop(0, '#FFD6E3');
             grad.addColorStop(0.5, '#FFF5EE');
             grad.addColorStop(1, '#FDE2D2');
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 1920, 800);
-
             ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
             for (let x = 0; x < 1920; x += 120) {
                 ctx.fillRect(x, 0, 60, 800);
             }
-
             ctx.strokeStyle = '#F45D8B';
             ctx.lineWidth = 6;
             ctx.setLineDash([20, 16]);
             ctx.strokeRect(48, 48, 1824, 704);
             ctx.setLineDash([]);
-
             ctx.textAlign = 'center';
             ctx.fillStyle = '#5E4036';
             ctx.font = 'bold 108px "Fredoka", sans-serif';
             ctx.fillText('🎀 aurelia store 🎀', 960, 385);
-
             ctx.fillStyle = '#8D6659';
             ctx.font = '500 44px "Prompt", sans-serif';
             ctx.fillText('Coquette Payment Channels', 960, 465);
-
             ctx.fillStyle = '#F45D8B';
             ctx.font = '600 32px "Prompt", sans-serif';
             ctx.fillText('✨ DEMO BANNER • 1920 × 800 px ✨', 960, 545);
-
             return canvas.toDataURL('image/png');
         }
-
         // สร้างรูปโลโก้ตัวอย่าง (Demo)
         function generateDefaultLogoDataUrl() {
             const canvas = document.createElement('canvas');
             canvas.width = 500;
             canvas.height = 500;
             const ctx = canvas.getContext('2d');
-
             const grad = ctx.createRadialGradient(250, 200, 40, 250, 250, 250);
             grad.addColorStop(0, '#FFFDFB');
             grad.addColorStop(1, '#FFD6E3');
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 500, 500);
-
             ctx.beginPath();
             ctx.arc(250, 250, 215, 0, Math.PI * 2);
             ctx.strokeStyle = '#8D6659';
@@ -613,64 +590,37 @@
             ctx.setLineDash([14, 10]);
             ctx.stroke();
             ctx.setLineDash([]);
-
             ctx.textAlign = 'center';
             ctx.font = '90px sans-serif';
             ctx.fillText('🎀', 250, 205);
-
             ctx.fillStyle = '#5E4036';
             ctx.font = 'bold 64px "Fredoka", sans-serif';
             ctx.fillText('aurelia', 250, 295);
-
             ctx.fillStyle = '#F45D8B';
             ctx.font = 'bold 34px "Fredoka", sans-serif';
             ctx.fillText('STORE • DEMO', 250, 345);
-
             return canvas.toDataURL('image/png');
         }
-
-        // สร้างรูป QR Code ตัวอย่าง (.png) ที่ดาวน์โหลดได้จริง
+        // สร้างรูป QR Code ตัวอย่าง (.png) แบบรูปคิวอาร์โค้ดเพียวๆ ไม่มีหัวแถบหรือข้อความในภาพ
         function generateDemoQrDataUrl(accountName, accountNumber) {
             const canvas = document.createElement('canvas');
-            canvas.width = 600;
-            canvas.height = 720;
+            canvas.width = 500;
+            canvas.height = 500;
             const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = '#FFFDFB';
-            ctx.fillRect(0, 0, 600, 720);
-
-            ctx.fillStyle = '#FF7EA5';
-            ctx.fillRect(0, 0, 600, 95);
-
             ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'center';
-            ctx.font = 'bold 34px "Fredoka", "Prompt", sans-serif';
-            ctx.fillText('🎀 QR CODE (DEMO) 🎀', 300, 60);
-
-            const qrSize = 360;
-            const startX = (600 - qrSize) / 2;
-            const startY = 135;
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.strokeStyle = '#FFC8D9';
-            ctx.lineWidth = 6;
-            ctx.beginPath();
-            ctx.roundRect(startX - 20, startY - 20, qrSize + 40, qrSize + 40, 24);
-            ctx.fill();
-            ctx.stroke();
-
+            ctx.fillRect(0, 0, 500, 500);
+            const qrSize = 420;
+            const startX = (500 - qrSize) / 2;
+            const startY = (500 - qrSize) / 2;
             const cells = 21;
             const cellSize = qrSize / cells;
             ctx.fillStyle = '#462E26';
-
             for (let r = 0; r < cells; r++) {
                 for (let c = 0; c < cells; c++) {
                     if (r >= 7 && r <= 13 && c >= 6 && c <= 14) continue;
-
                     const isTopLeft = r < 7 && c < 7;
                     const isTopRight = r < 7 && c >= cells - 7;
                     const isBottomLeft = r >= cells - 7 && c < 7;
-
                     if (isTopLeft || isTopRight || isBottomLeft) {
                         const lr = r % (cells - 7);
                         const lc = c % (cells - 7);
@@ -684,35 +634,35 @@
                     }
                 }
             }
-
             ctx.fillStyle = '#F45D8B';
             ctx.beginPath();
-            ctx.roundRect(startX + 85, startY + 135, 190, 90, 16);
+            ctx.roundRect(startX + 115, startY + 165, 190, 90, 16);
             ctx.fill();
-
             ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'center';
             ctx.font = 'bold 28px "Fredoka", sans-serif';
-            ctx.fillText('DEMO QR', 300, startY + 175);
+            ctx.fillText('DEMO QR', 250, startY + 205);
             ctx.font = '500 18px "Prompt", sans-serif';
-            ctx.fillText('ตัวอย่างทดสอบ', 300, startY + 205);
-
-            ctx.fillStyle = '#5E4036';
-            ctx.font = 'bold 28px "Prompt", sans-serif';
-            ctx.fillText(accountName || 'aurelia store (DEMO)', 300, 565);
-
-            ctx.fillStyle = '#8D6659';
-            ctx.font = '500 24px "Prompt", sans-serif';
-            ctx.fillText(`เลขที่/เบอร์: ${accountNumber || '099-999-9999'}`, 300, 610);
-
-            ctx.fillStyle = '#F45D8B';
-            ctx.font = '500 20px "Prompt", sans-serif';
-            ctx.fillText('บันทึกภาพนี้เพื่อทดสอบระบบได้เลยค่ะ 🍓', 300, 665);
-
+            ctx.fillText('ตัวอย่างทดสอบ', 250, startY + 235);
             return canvas.toDataURL('image/png');
         }
-
         const STORAGE_KEY = 'aurelia_store_demo_v2';
-
+        function getDefaultContacts() {
+            return [
+                {
+                    id: 'contact-1',
+                    platform: 'line',
+                    label: 'แจ้งโอนทาง LINE',
+                    url: ''
+                },
+                {
+                    id: 'contact-2',
+                    platform: 'instagram',
+                    label: 'แจ้งโอนทาง Instagram',
+                    url: ''
+                }
+            ];
+        }
         function getDefaultData() {
             return {
                 storeName: 'aurelia store',
@@ -745,22 +695,26 @@
                         qrImage: '',
                         icon: '📱'
                     }
-                ]
+                ],
+                contacts: getDefaultContacts()
             };
         }
-
         let appData = loadAppData();
-
         function loadAppData() {
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) return JSON.parse(saved);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (!Array.isArray(parsed.contacts)) {
+                        parsed.contacts = getDefaultContacts();
+                    }
+                    return parsed;
+                }
             } catch (e) {
                 console.warn('อ่าน LocalStorage ไม่ได้ ใช้ข้อมูลเริ่มต้นแทน', e);
             }
             return getDefaultData();
         }
-
         function persistAppData() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
@@ -768,17 +722,98 @@
                 showToast('⚠️ ไฟล์รูปภาพมีขนาดใหญ่เกินพื้นที่จำลองชั่วคราวค่ะ');
             }
         }
+        function getContactPlatformConfig(platform) {
+            const pinkBtnClass = 'bg-gradient-to-r from-strawberry-400 to-strawberry-500 hover:opacity-95 text-white';
+            const configs = {
+                line: {
+                    iconClass: 'fa-brands fa-line text-base',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'LINE'
+                },
+                instagram: {
+                    iconClass: 'fa-brands fa-instagram text-base',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'IG'
+                },
+                facebook: {
+                    iconClass: 'fa-brands fa-facebook-messenger text-base',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'FB'
+                },
+                tiktok: {
+                    iconClass: 'fa-brands fa-tiktok text-base',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'TikTok'
+                },
+                twitter: {
+                    iconClass: 'fa-brands fa-x-twitter text-base',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'X'
+                },
+                other: {
+                    iconClass: 'fa-solid fa-link text-sm',
+                    btnClass: pinkBtnClass,
+                    badgeText: 'LINK'
+                }
+            };
+            return configs[platform] || configs.other;
+        }
+        function renderContactButtons() {
+            const container = document.getElementById('contact-buttons-container');
+            if (!container) return;
+            container.innerHTML = '';
+            const contacts = appData.contacts || [];
+            if (contacts.length === 0) {
+                container.innerHTML = `
+                    <p class="text-center text-[11px] text-mocha-500 py-2">
+                        ยังไม่มีช่องทางการติดต่อ เพิ่มได้ที่เมนู <strong>หลังบ้าน</strong> ค่ะ
+                    </p>
+                `;
+                return;
+            }
+            contacts.forEach((contact) => {
+                const cfg = getContactPlatformConfig(contact.platform);
+                const hasValidUrl = contact.url && contact.url.trim().length > 0;
+                const badge = hasValidUrl
+                    ? ''
+                    : '<span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>';
 
+                if (hasValidUrl) {
+                    const rawUrl = contact.url.trim();
+                    const href = /^https?:\/\//i.test(rawUrl) ? rawUrl : 'https://' + rawUrl;
+                    const a = document.createElement('a');
+                    a.href = href;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = `btn-bounce w-full py-2.5 px-4 rounded-2xl ${cfg.btnClass} font-medium text-xs shadow-sm flex items-center justify-center gap-2`;
+                    a.innerHTML = `
+                        <i class="${cfg.iconClass}"></i>
+                        <span>${escapeHtml(contact.label)}</span>
+                    `;
+                    container.appendChild(a);
+                } else {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = `btn-bounce w-full py-2.5 px-4 rounded-2xl ${cfg.btnClass} font-medium text-xs shadow-sm flex items-center justify-center gap-2`;
+                    btn.onclick = () => showToast(`ลิงก์ตัวอย่าง (DEMO): ${contact.label} (ตั้งค่าลิงก์จริงได้ที่หลังบ้านค่ะ 💬)`);
+                    btn.innerHTML = `
+                        <i class="${cfg.iconClass}"></i>
+                        <span>${escapeHtml(contact.label)}</span>
+                        ${badge}
+                    `;
+                    container.appendChild(btn);
+                }
+            });
+        }
         function renderCustomerView() {
             document.getElementById('nav-store-name').textContent = appData.storeName;
             document.getElementById('display-store-name').textContent = appData.storeName;
             document.getElementById('display-welcome-msg').textContent = appData.welcomeMsg;
             document.getElementById('display-logo').src = appData.logoUrl || generateDefaultLogoDataUrl();
             document.getElementById('display-banner').src = appData.bannerUrl || generateDefaultBannerDataUrl();
-
+            renderContactButtons();
             const container = document.getElementById('payment-cards-container');
             container.innerHTML = '';
-
             if (!appData.payments || appData.payments.length === 0) {
                 container.innerHTML = `
                     <div class="coquette-card rounded-3xl p-8 text-center text-mocha-500">
@@ -788,11 +823,9 @@
                 `;
                 return;
             }
-
             appData.payments.forEach((item) => {
                 const card = document.createElement('div');
                 card.className = 'coquette-card rounded-3xl p-4 sm:p-5 relative overflow-hidden';
-
                 if (item.type === 'qr') {
                     const qrSrc = item.qrImage ? item.qrImage : generateDemoQrDataUrl(item.accountName, item.number);
                     card.innerHTML = `
@@ -810,33 +843,20 @@
                                 DEMO QR
                             </span>
                         </div>
-
                         <div class="flex flex-col items-center gap-3 bg-cream-100/80 p-3.5 rounded-2xl border border-strawberry-200/80">
-                            <div class="w-44 rounded-2xl overflow-hidden border-2 border-strawberry-300 bg-white shadow-sm">
-                                <img src="${qrSrc}" alt="QR Code ชำระเงิน" class="w-full h-auto block">
+                            <div class="w-44 aspect-square rounded-2xl overflow-hidden border-2 border-strawberry-300 bg-white shadow-sm">
+                                <img src="${qrSrc}" alt="QR Code ชำระเงิน" class="w-full h-full object-contain block">
                             </div>
-
-                            <div class="text-center space-y-2 w-full">
-                                <div>
-                                    <p class="text-[11px] text-mocha-500">ชื่อบัญชี</p>
-                                    <p class="font-semibold text-xs text-mocha-800">${escapeHtml(item.accountName)}</p>
-                                </div>
-                                <div>
-                                    <p class="text-[11px] text-mocha-500">หมายเลขพร้อมเพย์ / อ้างอิง</p>
-                                    <p class="font-mono font-bold text-base text-mocha-700">${escapeHtml(item.number)}</p>
-                                </div>
-                                <div class="pt-1 flex flex-col gap-2">
-                                    <button onclick="downloadQrCode('${item.id}')"
-                                        class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center gap-1.5">
-                                        <i class="fa-solid fa-download"></i>
-                                        <span>บันทึกรูป QR Code</span>
-                                    </button>
-                                    <button onclick="copyText('${escapeJs(item.number)}', 'คัดลอกเลขพร้อมเพย์เรียบร้อยแล้วค่ะ 🎀')"
-                                        class="btn-bounce w-full py-2 px-4 rounded-2xl bg-white hover:bg-cream-200 text-mocha-700 border border-strawberry-300 font-medium text-xs flex items-center justify-center gap-1.5">
-                                        <i class="fa-regular fa-copy text-strawberry-500"></i>
-                                        <span>คัดลอกเลขพร้อมเพย์</span>
-                                    </button>
-                                </div>
+                            <div class="text-center">
+                                <p class="text-[11px] text-mocha-500">ชื่อบัญชี</p>
+                                <p class="font-semibold text-xs text-mocha-800">${escapeHtml(item.accountName)}</p>
+                            </div>
+                            <div class="w-full">
+                                <button onclick="downloadQrCode('${item.id}')"
+                                    class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>บันทึกรูป QR Code</span>
+                                </button>
                             </div>
                         </div>
                     `;
@@ -846,7 +866,6 @@
                     const toastMsg = isWallet
                         ? `คัดลอกเบอร์วอเล็ท ${item.number} เรียบร้อยแล้วค่ะ 🧡`
                         : `คัดลอกเลขบัญชี ${item.number} เรียบร้อยแล้วค่ะ 🎀`;
-
                     card.innerHTML = `
                         <div class="flex items-start justify-between gap-2 mb-2.5">
                             <div class="flex items-center gap-2.5">
@@ -864,7 +883,6 @@
                                 DEMO
                             </span>
                         </div>
-
                         <div class="p-3 rounded-2xl bg-cream-100/90 border border-strawberry-200/80 space-y-2.5">
                             <div>
                                 <span class="text-[10px] uppercase tracking-wider text-mocha-500 block">
@@ -874,7 +892,6 @@
                                     ${escapeHtml(item.number)}
                                 </span>
                             </div>
-
                             <button onclick="copyText('${escapeJs(item.number)}', '${escapeJs(toastMsg)}')"
                                 class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center gap-1.5">
                                 <i class="fa-regular fa-copy"></i>
@@ -883,20 +900,16 @@
                         </div>
                     `;
                 }
-
                 container.appendChild(card);
             });
         }
-
         function renderAdminView() {
             document.getElementById('admin-store-name').value = appData.storeName;
             document.getElementById('admin-welcome-msg').value = appData.welcomeMsg;
             document.getElementById('admin-logo-url').value = appData.logoUrl.startsWith('data:') ? '' : appData.logoUrl;
             document.getElementById('admin-banner-url').value = appData.bannerUrl.startsWith('data:') ? '' : appData.bannerUrl;
-
             const listContainer = document.getElementById('admin-payment-list');
             listContainer.innerHTML = '';
-
             appData.payments.forEach((item) => {
                 const row = document.createElement('div');
                 row.className = 'p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 flex items-center justify-between gap-2';
@@ -922,15 +935,54 @@
                 `;
                 listContainer.appendChild(row);
             });
+            // จุดที่ 4: แสดงรายการช่องทางการติดต่อในหน้าหลังบ้าน
+            const contactListContainer = document.getElementById('admin-contact-list');
+            if (contactListContainer) {
+                contactListContainer.innerHTML = '';
+                const contacts = appData.contacts || [];
+                if (contacts.length === 0) {
+                    contactListContainer.innerHTML = `
+                        <p class="text-center text-[11px] text-mocha-500 py-2">
+                            ยังไม่มีช่องทางการติดต่อ กด <strong>+ เพิ่มใหม่</strong> ด้านบนได้เลยค่ะ
+                        </p>
+                    `;
+                } else {
+                    contacts.forEach((contact) => {
+                        const cfg = getContactPlatformConfig(contact.platform);
+                        const row = document.createElement('div');
+                        row.className = 'p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 flex items-center justify-between gap-2';
+                        row.innerHTML = `
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="${cfg.iconClass} text-strawberry-500"></i>
+                                    <span class="font-bold text-xs text-mocha-800 truncate">${escapeHtml(contact.label)}</span>
+                                </div>
+                                <p class="text-[10px] text-mocha-500 truncate mt-0.5">
+                                    ${contact.url ? escapeHtml(contact.url) : 'ยังไม่ระบุลิงก์ (โหมด DEMO)'}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button onclick="openEditContactModal('${contact.id}')" title="แก้ไข"
+                                    class="btn-bounce w-8 h-8 rounded-xl bg-white hover:bg-strawberry-100 text-mocha-700 border border-strawberry-200 text-xs flex items-center justify-center">
+                                    <i class="fa-solid fa-pen text-strawberry-500"></i>
+                                </button>
+                                <button onclick="deleteContactMethod('${contact.id}')" title="ลบ"
+                                    class="btn-bounce w-8 h-8 rounded-xl bg-white hover:bg-red-50 text-red-600 border border-red-200 text-xs flex items-center justify-center">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                        contactListContainer.appendChild(row);
+                    });
+                }
+            }
         }
-
         function switchView(viewName) {
             const customerSection = document.getElementById('view-customer');
             const adminSection = document.getElementById('view-admin');
             const tabCustomer = document.getElementById('tab-customer');
             const tabAdmin = document.getElementById('tab-admin');
             const scrollArea = document.getElementById('phone-scroll-area');
-
             if (viewName === 'customer') {
                 customerSection.classList.remove('hidden');
                 adminSection.classList.add('hidden');
@@ -944,12 +996,10 @@
                 tabCustomer.className = 'btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-mocha-700 hover:bg-cream-100 transition-all';
                 renderAdminView();
             }
-
             if (scrollArea) {
                 scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
-
         function copyText(text, successMessage) {
             const tempInput = document.createElement('textarea');
             tempInput.value = text;
@@ -966,7 +1016,6 @@
             }
             document.body.removeChild(tempInput);
         }
-
         function downloadQrCode(paymentId) {
             const item = appData.payments.find(p => p.id === paymentId);
             if (!item) return;
@@ -979,7 +1028,6 @@
             document.body.removeChild(link);
             showToast('กำลังบันทึกรูป QR Code (.png) ค่ะ 📥🎀');
         }
-
         function handleQuickImageUpload(event, targetType) {
             const file = event.target.files[0];
             if (!file) return;
@@ -997,7 +1045,6 @@
             };
             reader.readAsDataURL(file);
         }
-
         function handleAdminFileSelect(event, inputId) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1008,23 +1055,19 @@
             };
             reader.readAsDataURL(file);
         }
-
         function saveStoreSettings() {
             const newName = document.getElementById('admin-store-name').value.trim();
             const newMsg = document.getElementById('admin-welcome-msg').value.trim();
             const newLogo = document.getElementById('admin-logo-url').value.trim();
             const newBanner = document.getElementById('admin-banner-url').value.trim();
-
             if (newName) appData.storeName = newName;
             if (newMsg) appData.welcomeMsg = newMsg;
             if (newLogo) appData.logoUrl = newLogo;
             if (newBanner) appData.bannerUrl = newBanner;
-
             persistAppData();
             renderCustomerView();
             showToast('บันทึกข้อมูลหน้าร้านเรียบร้อยแล้วค่ะ 💖');
         }
-
         function openAddPaymentModal() {
             document.getElementById('modal-title').textContent = 'เพิ่มช่องทางการโอนเงิน';
             document.getElementById('edit-payment-id').value = '';
@@ -1034,16 +1077,13 @@
             document.getElementById('edit-payment-account-name').value = '';
             document.getElementById('edit-payment-qr-data').value = '';
             toggleQrInputVisibility();
-
             const modal = document.getElementById('payment-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
-
         function openEditPaymentModal(id) {
             const item = appData.payments.find(p => p.id === id);
             if (!item) return;
-
             document.getElementById('modal-title').textContent = 'แก้ไขช่องทางการโอนเงิน';
             document.getElementById('edit-payment-id').value = item.id;
             document.getElementById('edit-payment-type').value = item.type;
@@ -1052,18 +1092,15 @@
             document.getElementById('edit-payment-account-name').value = item.accountName;
             document.getElementById('edit-payment-qr-data').value = item.qrImage || '';
             toggleQrInputVisibility();
-
             const modal = document.getElementById('payment-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
-
         function closePaymentModal() {
             const modal = document.getElementById('payment-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-
         function toggleQrInputVisibility() {
             const type = document.getElementById('edit-payment-type').value;
             const qrBox = document.getElementById('qr-custom-image-box');
@@ -1073,7 +1110,6 @@
                 qrBox.classList.add('hidden');
             }
         }
-
         function handleQrFileUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -1084,7 +1120,6 @@
             };
             reader.readAsDataURL(file);
         }
-
         function savePaymentMethod() {
             const id = document.getElementById('edit-payment-id').value;
             const type = document.getElementById('edit-payment-type').value;
@@ -1092,14 +1127,11 @@
             const number = document.getElementById('edit-payment-number').value.trim();
             const accountName = document.getElementById('edit-payment-account-name').value.trim();
             const qrImage = document.getElementById('edit-payment-qr-data').value;
-
             if (!provider || !number || !accountName) {
                 showToast('⚠️ กรุณากรอกข้อมูลให้ครบทุกช่องนะคะ');
                 return;
             }
-
             const iconMap = { bank: '🏦', wallet: '🧡', qr: '📱' };
-
             if (id) {
                 const index = appData.payments.findIndex(p => p.id === id);
                 if (index !== -1) {
@@ -1126,13 +1158,11 @@
                 });
                 showToast('เพิ่มช่องทางใหม่เรียบร้อยแล้วค่ะ ✨');
             }
-
             persistAppData();
             closePaymentModal();
             renderAdminView();
             renderCustomerView();
         }
-
         function deletePaymentMethod(id) {
             appData.payments = appData.payments.filter(p => p.id !== id);
             persistAppData();
@@ -1140,19 +1170,88 @@
             renderCustomerView();
             showToast('ลบช่องทางเรียบร้อยแล้วค่ะ 🗑️');
         }
-
+        /* จุดที่ 4: ฟังก์ชันจัดการเพิ่ม / แก้ไข / ลบ ช่องทางการติดต่อ */
+        function openAddContactModal() {
+            document.getElementById('contact-modal-title').textContent = 'เพิ่มช่องทางการติดต่อ';
+            document.getElementById('edit-contact-id').value = '';
+            document.getElementById('edit-contact-platform').value = 'line';
+            document.getElementById('edit-contact-label').value = '';
+            document.getElementById('edit-contact-url').value = '';
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function openEditContactModal(id) {
+            const item = (appData.contacts || []).find(c => c.id === id);
+            if (!item) return;
+            document.getElementById('contact-modal-title').textContent = 'แก้ไขช่องทางการติดต่อ';
+            document.getElementById('edit-contact-id').value = item.id;
+            document.getElementById('edit-contact-platform').value = item.platform || 'other';
+            document.getElementById('edit-contact-label').value = item.label || '';
+            document.getElementById('edit-contact-url').value = item.url || '';
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        function saveContactMethod() {
+            const id = document.getElementById('edit-contact-id').value;
+            const platform = document.getElementById('edit-contact-platform').value;
+            const label = document.getElementById('edit-contact-label').value.trim();
+            const url = document.getElementById('edit-contact-url').value.trim();
+            if (!label) {
+                showToast('⚠️ กรุณากรอกข้อความบนปุ่มนะคะ');
+                return;
+            }
+            if (!Array.isArray(appData.contacts)) {
+                appData.contacts = [];
+            }
+            if (id) {
+                const index = appData.contacts.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    appData.contacts[index] = {
+                        ...appData.contacts[index],
+                        platform,
+                        label,
+                        url
+                    };
+                }
+                showToast('แก้ไขช่องทางการติดต่อเรียบร้อยแล้วค่ะ 🎀');
+            } else {
+                appData.contacts.push({
+                    id: 'contact-' + Date.now(),
+                    platform,
+                    label,
+                    url
+                });
+                showToast('เพิ่มช่องทางการติดต่อใหม่เรียบร้อยแล้วค่ะ ✨');
+            }
+            persistAppData();
+            closeContactModal();
+            renderAdminView();
+            renderCustomerView();
+        }
+        function deleteContactMethod(id) {
+            appData.contacts = (appData.contacts || []).filter(c => c.id !== id);
+            persistAppData();
+            renderAdminView();
+            renderCustomerView();
+            showToast('ลบช่องทางการติดต่อเรียบร้อยแล้วค่ะ 🗑️');
+        }
         function confirmResetDemo() {
             const modal = document.getElementById('reset-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
-
         function closeResetModal() {
             const modal = document.getElementById('reset-modal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-
         function executeResetDemo() {
             localStorage.removeItem(STORAGE_KEY);
             appData = getDefaultData();
@@ -1162,24 +1261,20 @@
             renderCustomerView();
             showToast('รีเซ็ตข้อมูล Demo เรียบร้อยแล้วค่ะ 🍓');
         }
-
         function showToast(message) {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = 'bg-mocha-800/95 text-cream-50 px-4 py-2.5 rounded-2xl shadow-lg border border-strawberry-300 text-xs font-medium text-center backdrop-blur-md transition-all duration-300 transform translate-y-2 opacity-0';
             toast.textContent = message;
-
             container.appendChild(toast);
             requestAnimationFrame(() => {
                 toast.classList.remove('translate-y-2', 'opacity-0');
             });
-
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
                 setTimeout(() => toast.remove(), 300);
             }, 2800);
         }
-
         function escapeHtml(str) {
             if (!str) return '';
             return String(str)
@@ -1189,12 +1284,10 @@
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#039;');
         }
-
         function escapeJs(str) {
             if (!str) return '';
             return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         }
-
         function updatePhoneClock() {
             const clockEl = document.getElementById('phone-clock');
             if (!clockEl) return;
@@ -1203,7 +1296,6 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             clockEl.textContent = `${hours}:${minutes}`;
         }
-
         window.addEventListener('DOMContentLoaded', () => {
             renderCustomerView();
             updatePhoneClock();
