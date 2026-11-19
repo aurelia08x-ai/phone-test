@@ -62,69 +62,68 @@
             overflow-x: hidden;
         }
 
-        /* กรอบจำลองตัวเครื่องโทรศัพท์แนวตั้งทรงสูง (Portrait 390px x 760px) ไม่ยืดแนวนอนเด็ดขาด */
-        @media (min-width: 480px) {
-            .phone-scale-stage {
-                transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-                transform-origin: top center;
-            }
+        /* กรอบจำลองตัวเครื่องโทรศัพท์แนวตั้งทรงสูง (Portrait 390px x 780px) แสดงครบทั้งเครื่องบนทุกอุปกรณ์ */
+        .phone-scale-stage {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: top center;
+            will-change: transform;
+        }
 
-            .phone-chassis {
-                position: relative;
-                width: 390px !important;
-                min-width: 390px !important;
-                max-width: 390px !important;
-                height: 760px !important;
-                min-height: 760px !important;
-                max-height: 760px !important;
-                flex-shrink: 0 !important;
-                background: linear-gradient(145deg, #FFD6E3 0%, #FFEAF0 50%, #F9DFD0 100%);
-                border-radius: 52px;
-                padding: 13px;
-                box-shadow: 
-                    0 25px 60px -12px rgba(94, 64, 54, 0.25),
-                    0 0 0 3px #FFFDFB,
-                    0 0 0 6px #FFC8D9,
-                    inset 0 2px 6px rgba(255, 255, 255, 0.9);
-            }
+        .phone-chassis {
+            position: relative;
+            width: 390px !important;
+            min-width: 390px !important;
+            max-width: 390px !important;
+            height: 780px !important;
+            min-height: 780px !important;
+            max-height: 780px !important;
+            flex-shrink: 0 !important;
+            background: linear-gradient(145deg, #FFD6E3 0%, #FFEAF0 50%, #F9DFD0 100%);
+            border-radius: 52px;
+            padding: 13px;
+            box-shadow: 
+                0 25px 60px -12px rgba(94, 64, 54, 0.25),
+                0 0 0 3px #FFFDFB,
+                0 0 0 6px #FFC8D9,
+                inset 0 2px 6px rgba(255, 255, 255, 0.9);
+        }
 
-            /* ปุ่มกดด้านข้างตัวเครื่องโทรศัพท์ */
-            .phone-btn-left-1 {
-                position: absolute;
-                left: -9px;
-                top: 130px;
-                width: 5px;
-                height: 28px;
-                background: #FFA4C0;
-                border-radius: 4px 0 0 4px;
-            }
-            .phone-btn-left-2 {
-                position: absolute;
-                left: -9px;
-                top: 175px;
-                width: 5px;
-                height: 50px;
-                background: #FFA4C0;
-                border-radius: 4px 0 0 4px;
-            }
-            .phone-btn-left-3 {
-                position: absolute;
-                left: -9px;
-                top: 238px;
-                width: 5px;
-                height: 50px;
-                background: #FFA4C0;
-                border-radius: 4px 0 0 4px;
-            }
-            .phone-btn-right {
-                position: absolute;
-                right: -9px;
-                top: 190px;
-                width: 5px;
-                height: 72px;
-                background: #FFA4C0;
-                border-radius: 0 4px 4px 0;
-            }
+        /* ปุ่มกดด้านข้างตัวเครื่องโทรศัพท์ */
+        .phone-btn-left-1 {
+            position: absolute;
+            left: -9px;
+            top: 135px;
+            width: 5px;
+            height: 28px;
+            background: #FFA4C0;
+            border-radius: 4px 0 0 4px;
+        }
+        .phone-btn-left-2 {
+            position: absolute;
+            left: -9px;
+            top: 180px;
+            width: 5px;
+            height: 50px;
+            background: #FFA4C0;
+            border-radius: 4px 0 0 4px;
+        }
+        .phone-btn-left-3 {
+            position: absolute;
+            left: -9px;
+            top: 244px;
+            width: 5px;
+            height: 50px;
+            background: #FFA4C0;
+            border-radius: 4px 0 0 4px;
+        }
+        .phone-btn-right {
+            position: absolute;
+            right: -9px;
+            top: 195px;
+            width: 5px;
+            height: 72px;
+            background: #FFA4C0;
+            border-radius: 0 4px 4px 0;
         }
 
         /* หน้าจอภายในโทรศัพท์ */
@@ -190,50 +189,50 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start min-[480px]:py-6 selection:bg-strawberry-200 selection:text-mocha-800 relative">
+<body class="min-h-screen flex flex-col items-center justify-start pt-14 pb-6 px-3 selection:bg-strawberry-200 selection:text-mocha-800 relative">
 
-    <!-- ==================== ZOOM / SCALE TOGGLE (สำหรับ iPad & คอมพิวเตอร์) ==================== -->
-    <div class="hidden min-[480px]:flex items-center gap-1.5 fixed top-3 right-3 z-40 bg-cream-50/95 backdrop-blur-md px-3 py-1.5 rounded-full border-2 border-strawberry-200 shadow-md">
-        <span class="text-[11px] font-semibold text-mocha-700 mr-1 flex items-center gap-1">
+    <!-- ==================== ZOOM / SCALE TOGGLE (สำหรับทุกอุปกรณ์) ==================== -->
+    <div class="flex items-center gap-1 fixed top-2.5 right-2.5 sm:top-3 sm:right-3 z-40 bg-cream-50/95 backdrop-blur-md px-2.5 py-1.5 rounded-full border-2 border-strawberry-200 shadow-md">
+        <span class="text-[11px] font-semibold text-mocha-700 mr-0.5 flex items-center gap-1">
             <i class="fa-solid fa-mobile-screen text-strawberry-500"></i>
-            <span>ขนาดจอ:</span>
+            <span class="hidden sm:inline">ขนาดจอ:</span>
         </span>
-        <button id="zoom-btn-100" onclick="setPhoneScale(1)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs">
+        <button id="zoom-btn-auto" onclick="setScaleMode('auto')" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs">
+            พอดีจอ
+        </button>
+        <button id="zoom-btn-100" onclick="setScaleMode(1)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
             100%
         </button>
-        <button id="zoom-btn-85" onclick="setPhoneScale(0.85)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
+        <button id="zoom-btn-85" onclick="setScaleMode(0.85)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
             85%
-        </button>
-        <button id="zoom-btn-75" onclick="setPhoneScale(0.75)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
-            75%
         </button>
     </div>
 
-    <!-- ==================== PHONE FRAME MOCKUP WRAPPER (PORTRAIT 390x760) ==================== -->
-    <div id="phone-scale-stage" class="phone-scale-stage w-full min-[480px]:w-auto flex justify-center">
-    <div class="phone-chassis w-full min-h-screen min-[480px]:min-h-0 flex flex-col shrink-0">
+    <!-- ==================== PHONE FRAME MOCKUP WRAPPER (PORTRAIT 390x780) ==================== -->
+    <div id="phone-scale-stage" class="phone-scale-stage w-auto flex justify-center">
+    <div class="phone-chassis flex flex-col shrink-0">
         
-        <!-- ปุ่มกดข้างตัวเครื่องโทรศัพท์ (แสดงบน iPad และ คอมพิวเตอร์) -->
-        <div class="hidden min-[480px]:block phone-btn-left-1" aria-hidden="true"></div>
-        <div class="hidden min-[480px]:block phone-btn-left-2" aria-hidden="true"></div>
-        <div class="hidden min-[480px]:block phone-btn-left-3" aria-hidden="true"></div>
-        <div class="hidden min-[480px]:block phone-btn-right" aria-hidden="true"></div>
+        <!-- ปุ่มกดข้างตัวเครื่องโทรศัพท์ (แสดงบนทุกอุปกรณ์) -->
+        <div class="phone-btn-left-1" aria-hidden="true"></div>
+        <div class="phone-btn-left-2" aria-hidden="true"></div>
+        <div class="phone-btn-left-3" aria-hidden="true"></div>
+        <div class="phone-btn-right" aria-hidden="true"></div>
 
-        <!-- ของตกแต่งห้อยมุมเครื่องน่ารักๆ (แสดงบนจอใหญ่) -->
-        <div class="hidden md:flex flex-col items-center absolute -right-11 top-24 z-30 pointer-events-none select-none animate-bounce" style="animation-duration: 3.5s;">
-            <div class="w-3 h-3 rounded-full border-2 border-mocha-500 bg-cream-50"></div>
-            <div class="w-0.5 h-4 bg-mocha-500"></div>
-            <div class="px-2.5 py-2 rounded-2xl bg-cream-50 border-2 border-strawberry-300 shadow-md text-center">
-                <span class="text-xl block">🎀</span>
-                <span class="text-[9px] font-cute font-bold text-strawberry-500 block leading-tight">aurelia</span>
+        <!-- ของตกแต่งห้อยมุมเครื่องน่ารักๆ (แสดงบนทุกอุปกรณ์) -->
+        <div class="flex flex-col items-center absolute -right-9 top-24 z-30 pointer-events-none select-none animate-bounce" style="animation-duration: 3.5s;">
+            <div class="w-2.5 h-2.5 rounded-full border-2 border-mocha-500 bg-cream-50"></div>
+            <div class="w-0.5 h-3.5 bg-mocha-500"></div>
+            <div class="px-2 py-1.5 rounded-2xl bg-cream-50 border-2 border-strawberry-300 shadow-md text-center">
+                <span class="text-lg block leading-none">🎀</span>
+                <span class="text-[8px] font-cute font-bold text-strawberry-500 block leading-tight mt-0.5">aurelia</span>
             </div>
         </div>
 
         <!-- ==================== หน้าจอภายในสมาร์ทโฟน ==================== -->
-        <div class="phone-screen w-full flex-1 min-[480px]:rounded-[40px] min-[480px]:border-2 min-[480px]:border-mocha-700/15 overflow-hidden flex flex-col relative shadow-inner">
+        <div class="phone-screen w-full flex-1 rounded-[40px] border-2 border-mocha-700/15 overflow-hidden flex flex-col relative shadow-inner">
             
-            <!-- STATUS BAR & DYNAMIC ISLAND (แสดงเฉพาะบนจอ iPad / คอมพิวเตอร์) -->
-            <div class="hidden min-[480px]:flex items-center justify-between px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
+            <!-- STATUS BAR & DYNAMIC ISLAND (แสดงบนทุกอุปกรณ์) -->
+            <div class="flex items-center justify-between px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
                 <span id="phone-clock">09:41</span>
                 <!-- Dynamic Island -->
                 <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner">
@@ -527,7 +526,7 @@
             </div>
 
             <!-- HOME INDICATOR BAR (แถบขีดด้านล่างจอสมาร์ทโฟน) -->
-            <div class="hidden min-[480px]:flex items-center justify-center py-2 bg-cream-50/95 shrink-0 select-none">
+            <div class="flex items-center justify-center py-2 bg-cream-50/95 shrink-0 select-none">
                 <div class="w-32 h-1.5 rounded-full bg-mocha-700/25"></div>
             </div>
 
@@ -1333,19 +1332,42 @@
             return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         }
 
-        // เริ่มต้นทำงานเมื่อโหลดหน้าเว็บเสร็จ
-        function setPhoneScale(scale) {
+        // ระบบปรับขนาดสเกลโทรศัพท์ (Auto Fit Screen / 100% / 85%)
+        const PHONE_WIDTH = 390;
+        const PHONE_HEIGHT = 780;
+        let currentScaleMode = 'auto';
+
+        function applyPhoneScale() {
             const stage = document.getElementById('phone-scale-stage');
-            if (stage) {
-                stage.style.transform = `scale(${scale})`;
-                // ปรับ margin ล่างเพื่อไม่ให้เกิดพื้นที่ว่างเกินจำเป็นเวลาย่อสเกล
-                stage.style.marginBottom = scale < 1 ? `-${Math.round(760 * (1 - scale))}px` : '0px';
+            if (!stage) return;
+
+            let scale = 1;
+            if (currentScaleMode === 'auto') {
+                // เว้นขอบซ้าย-ขวา (รวมปุ่มข้างเครื่องและพวงกุญแจ) และขอบบน-ล่าง
+                const availableWidth = window.innerWidth - 76;
+                const availableHeight = window.innerHeight - 84;
+                const scaleX = availableWidth / PHONE_WIDTH;
+                const scaleY = availableHeight / PHONE_HEIGHT;
+                scale = Math.min(1, scaleX, scaleY);
+                scale = Math.max(0.45, Number(scale.toFixed(3)));
+            } else {
+                scale = currentScaleMode;
             }
 
-            [1, 0.85, 0.75].forEach(val => {
-                const btn = document.getElementById(`zoom-btn-${Math.round(val * 100)}`);
+            stage.style.transform = `scale(${scale})`;
+            stage.style.marginBottom = scale < 1 ? `-${Math.round(PHONE_HEIGHT * (1 - scale))}px` : '0px';
+        }
+
+        function setScaleMode(mode) {
+            currentScaleMode = mode;
+            applyPhoneScale();
+
+            const modes = ['auto', 1, 0.85];
+            modes.forEach(m => {
+                const btnId = m === 'auto' ? 'zoom-btn-auto' : `zoom-btn-${Math.round(m * 100)}`;
+                const btn = document.getElementById(btnId);
                 if (!btn) return;
-                if (val === scale) {
+                if (m === mode) {
                     btn.className = 'btn-bounce px-2.5 py-1 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs';
                 } else {
                     btn.className = 'btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100';
@@ -1362,9 +1384,16 @@
             clockEl.textContent = `${hours}:${minutes}`;
         }
 
+        window.addEventListener('resize', () => {
+            if (currentScaleMode === 'auto') {
+                applyPhoneScale();
+            }
+        });
+
         window.addEventListener('DOMContentLoaded', () => {
             renderCustomerView();
             updatePhoneClock();
+            applyPhoneScale();
             setInterval(updatePhoneClock, 30000);
         });
     </script>
