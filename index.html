@@ -2,17 +2,17 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>aurelia store — ช่องทางการโอนเงิน (Demo)</title>
-    
-    <!-- Google Fonts: Prompt (ภาษาไทยอ่านง่าย ทันสมัย) & Fredoka (หัวข้อภาษาอังกฤษน่ารัก มนละมุน) -->
+
+    <!-- Google Fonts: Prompt (ภาษาไทยอ่านง่าย สบายตา) & Fredoka (หัวข้อภาษาอังกฤษน่ารัก) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -50,10 +50,10 @@
     </script>
 
     <style>
-        /* พื้นหลังลายตาราง Gingham / จุดน่ารักสไตล์ Neapolitan Pastel เบาๆ ไม่รก */
+        /* พื้นหลังสไตล์ Neapolitan Pastel (ชมพูสตรอว์เบอร์รี ครีมวานิลลา น้ำตาลช็อกโกแลต) */
         body {
             background-color: #FDEEE4;
-            background-image: 
+            background-image:
                 radial-gradient(#FFC8D9 1.5px, transparent 1.5px),
                 radial-gradient(#F9DFD0 1.5px, #FDEEE4 1.5px);
             background-size: 32px 32px;
@@ -62,13 +62,14 @@
             overflow-x: hidden;
         }
 
-        /* กรอบจำลองตัวเครื่องโทรศัพท์แนวตั้งทรงสูง (Portrait 390px x 780px) แสดงครบทั้งเครื่องบนทุกอุปกรณ์ */
+        /* เวทีสำหรับย่อ-ขยายตัวเครื่องโทรศัพท์ (390px x 780px) โดยไม่ตัดขอบ */
         .phone-scale-stage {
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), margin-bottom 0.22s ease;
             transform-origin: top center;
             will-change: transform;
         }
 
+        /* ตัวเครื่องสมาร์ทโฟนแนวตั้งทรงสูง 390px x 780px แสดงครบทั้งเครื่องบนทุกอุปกรณ์ */
         .phone-chassis {
             position: relative;
             width: 390px !important;
@@ -78,17 +79,17 @@
             min-height: 780px !important;
             max-height: 780px !important;
             flex-shrink: 0 !important;
-            background: linear-gradient(145deg, #FFD6E3 0%, #FFEAF0 50%, #F9DFD0 100%);
+            background: linear-gradient(145deg, #FFD6E3 0%, #FFEAF0 52%, #F9DFD0 100%);
             border-radius: 52px;
             padding: 13px;
-            box-shadow: 
-                0 25px 60px -12px rgba(94, 64, 54, 0.25),
+            box-shadow:
+                0 24px 55px -12px rgba(94, 64, 54, 0.24),
                 0 0 0 3px #FFFDFB,
                 0 0 0 6px #FFC8D9,
                 inset 0 2px 6px rgba(255, 255, 255, 0.9);
         }
 
-        /* ปุ่มกดด้านข้างตัวเครื่องโทรศัพท์ */
+        /* ปุ่มกดด้านข้างตัวเครื่อง */
         .phone-btn-left-1 {
             position: absolute;
             left: -9px;
@@ -126,14 +127,14 @@
             border-radius: 0 4px 4px 0;
         }
 
-        /* หน้าจอภายในโทรศัพท์ */
+        /* พื้นผิวหน้าจอภายในสมาร์ทโฟน */
         .phone-screen {
             background-color: #FFF8F3;
             background-image: radial-gradient(#FFC8D9 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
-        /* ตกแต่ง Scrollbar ภายในหน้าจอโทรศัพท์ให้เรียวเล็กน่ารัก */
+        /* แถบเลื่อนภายในหน้าจอโทรศัพท์ */
         .phone-scroll::-webkit-scrollbar {
             width: 5px;
         }
@@ -148,7 +149,7 @@
             background: #FFA4C0;
         }
 
-        /* ขอบหยักลูกไม้สไตล์ Coquette (Scalloped Border) */
+        /* ขอบหยักลูกไม้สไตล์ Coquette */
         .lace-divider {
             height: 12px;
             width: 100%;
@@ -157,12 +158,12 @@
             background-repeat: repeat-x;
         }
 
-        /* การ์ดสไตล์ Coquette Scrapbook สะอาดตา */
+        /* การ์ดสไตล์น่ารัก สะอาดตา ไม่รก */
         .coquette-card {
             background: rgba(255, 253, 251, 0.96);
             border: 2px solid #FFC8D9;
             box-shadow: 0 6px 18px -4px rgba(141, 102, 89, 0.08), 0 3px 0 #FFE4EC;
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
         }
 
         .coquette-card:hover {
@@ -170,14 +171,14 @@
             box-shadow: 0 10px 22px -4px rgba(244, 93, 139, 0.14), 0 4px 0 #FFC8D9;
         }
 
-        /* กรอบโลโก้วงกลมขอบหยักน่ารัก */
+        /* กรอบโลโก้วงกลม */
         .logo-scallop-ring {
             box-shadow: 0 0 0 4px #FFFDFB, 0 0 0 7px #FFC8D9, 0 8px 16px rgba(94, 64, 54, 0.12);
         }
 
-        /* แอนิเมชันปุ่มเด้งนุ่มนวล */
+        /* เอฟเฟกต์ปุ่มกด */
         .btn-bounce {
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .btn-bounce:active {
             transform: scale(0.95);
@@ -189,352 +190,327 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start pt-14 pb-6 px-3 selection:bg-strawberry-200 selection:text-mocha-800 relative">
+<body class="min-h-screen flex flex-col items-center justify-start pt-2 pb-4 px-2 sm:px-4 selection:bg-strawberry-200 selection:text-mocha-800">
 
-    <!-- ==================== ZOOM / SCALE TOGGLE (สำหรับทุกอุปกรณ์) ==================== -->
-    <div class="flex items-center gap-1 fixed top-2.5 right-2.5 sm:top-3 sm:right-3 z-40 bg-cream-50/95 backdrop-blur-md px-2.5 py-1.5 rounded-full border-2 border-strawberry-200 shadow-md">
-        <span class="text-[11px] font-semibold text-mocha-700 mr-0.5 flex items-center gap-1">
-            <i class="fa-solid fa-mobile-screen text-strawberry-500"></i>
-            <span class="hidden sm:inline">ขนาดจอ:</span>
+    <!-- ==================== แถบปุ่มปรับขนาด: พอดีจอ / 100% / 85% (อยู่ด้านบนสุด ไม่บังตัวเครื่อง) ==================== -->
+    <div class="w-full max-w-[460px] flex items-center justify-between sm:justify-end gap-2 mb-2 px-1 z-30 shrink-0">
+        <span class="text-[11px] font-medium text-mocha-700/80 sm:hidden flex items-center gap-1">
+            <span>🎀</span>
+            <span>aurelia store</span>
         </span>
-        <button id="zoom-btn-auto" onclick="setScaleMode('auto')" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs">
-            พอดีจอ
-        </button>
-        <button id="zoom-btn-100" onclick="setScaleMode(1)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
-            100%
-        </button>
-        <button id="zoom-btn-85" onclick="setScaleMode(0.85)" class="btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
-            85%
-        </button>
+        <div class="flex items-center gap-1 bg-cream-50/95 backdrop-blur-md px-2.5 py-1 rounded-full border-2 border-strawberry-200 shadow-sm">
+            <span class="text-[11px] font-semibold text-mocha-700 mr-0.5 flex items-center gap-1">
+                <i class="fa-solid fa-mobile-screen text-strawberry-500"></i>
+                <span class="hidden sm:inline">ขนาดจอ:</span>
+            </span>
+            <button id="zoom-btn-auto" onclick="setScaleMode('auto')" class="btn-bounce px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs">
+                พอดีจอ
+            </button>
+            <button id="zoom-btn-100" onclick="setScaleMode(1)" class="btn-bounce px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
+                100%
+            </button>
+            <button id="zoom-btn-85" onclick="setScaleMode(0.85)" class="btn-bounce px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100">
+                85%
+            </button>
+        </div>
     </div>
 
-    <!-- ==================== PHONE FRAME MOCKUP WRAPPER (PORTRAIT 390x780) ==================== -->
+    <!-- ==================== กรอบจำลองสมาร์ทโฟนแนวตั้งทรงสูง (390px x 780px) ==================== -->
     <div id="phone-scale-stage" class="phone-scale-stage w-auto flex justify-center">
-    <div class="phone-chassis flex flex-col shrink-0">
-        
-        <!-- ปุ่มกดข้างตัวเครื่องโทรศัพท์ (แสดงบนทุกอุปกรณ์) -->
-        <div class="phone-btn-left-1" aria-hidden="true"></div>
-        <div class="phone-btn-left-2" aria-hidden="true"></div>
-        <div class="phone-btn-left-3" aria-hidden="true"></div>
-        <div class="phone-btn-right" aria-hidden="true"></div>
+        <div class="phone-chassis flex flex-col shrink-0">
 
-        <!-- ของตกแต่งห้อยมุมเครื่องน่ารักๆ (แสดงบนทุกอุปกรณ์) -->
-        <div class="flex flex-col items-center absolute -right-9 top-24 z-30 pointer-events-none select-none animate-bounce" style="animation-duration: 3.5s;">
-            <div class="w-2.5 h-2.5 rounded-full border-2 border-mocha-500 bg-cream-50"></div>
-            <div class="w-0.5 h-3.5 bg-mocha-500"></div>
-            <div class="px-2 py-1.5 rounded-2xl bg-cream-50 border-2 border-strawberry-300 shadow-md text-center">
-                <span class="text-lg block leading-none">🎀</span>
-                <span class="text-[8px] font-cute font-bold text-strawberry-500 block leading-tight mt-0.5">aurelia</span>
-            </div>
-        </div>
+            <!-- ปุ่มกดข้างตัวเครื่องโทรศัพท์ -->
+            <div class="phone-btn-left-1" aria-hidden="true"></div>
+            <div class="phone-btn-left-2" aria-hidden="true"></div>
+            <div class="phone-btn-left-3" aria-hidden="true"></div>
+            <div class="phone-btn-right" aria-hidden="true"></div>
 
-        <!-- ==================== หน้าจอภายในสมาร์ทโฟน ==================== -->
-        <div class="phone-screen w-full flex-1 rounded-[40px] border-2 border-mocha-700/15 overflow-hidden flex flex-col relative shadow-inner">
-            
-            <!-- STATUS BAR & DYNAMIC ISLAND (แสดงบนทุกอุปกรณ์) -->
-            <div class="flex items-center justify-between px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
-                <span id="phone-clock">09:41</span>
-                <!-- Dynamic Island -->
-                <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-strawberry-400 animate-pulse"></span>
-                    <span class="text-[9px] text-cream-100 font-cute tracking-wider">aurelia</span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-mocha-700 border border-mocha-500"></span>
-                </div>
-                <div class="flex items-center gap-1.5 text-mocha-700">
-                    <i class="fa-solid fa-signal text-[10px]"></i>
-                    <i class="fa-solid fa-wifi text-[10px]"></i>
-                    <i class="fa-solid fa-battery-full text-xs text-strawberry-500"></i>
+            <!-- พวงกุญแจโบว์ตกแต่งข้างเครื่อง -->
+            <div class="hidden min-[440px]:flex flex-col items-center absolute -right-8 top-24 z-30 pointer-events-none select-none animate-bounce" style="animation-duration: 3.5s;">
+                <div class="w-2.5 h-2.5 rounded-full border-2 border-mocha-500 bg-cream-50"></div>
+                <div class="w-0.5 h-3.5 bg-mocha-500"></div>
+                <div class="px-2 py-1.5 rounded-2xl bg-cream-50 border-2 border-strawberry-300 shadow-md text-center">
+                    <span class="text-base block leading-none">🎀</span>
+                    <span class="text-[8px] font-cute font-bold text-strawberry-500 block leading-tight mt-0.5">aurelia</span>
                 </div>
             </div>
 
-            <!-- ==================== TOP NAVIGATION BAR (ภายในจอโทรศัพท์) ==================== -->
-            <header class="sticky top-0 z-20 bg-cream-50/95 backdrop-blur-md border-b-2 border-strawberry-200 px-3.5 py-2.5 shrink-0">
-                <div class="flex items-center justify-between gap-1.5">
-                    <!-- ชื่อร้านย่อด้านซ้าย -->
-                    <div class="flex items-center gap-1.5 min-w-0">
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-strawberry-100 text-strawberry-500 border border-strawberry-200 text-base shrink-0">
-                            🎀
-                        </span>
-                        <div class="truncate">
-                            <span id="nav-store-name" class="font-cute font-bold text-base text-mocha-700 tracking-wide block leading-none truncate">
-                                aurelia store
+            <!-- ==================== หน้าจอภายในโทรศัพท์ ==================== -->
+            <div class="phone-screen w-full flex-1 rounded-[40px] border-2 border-mocha-700/15 overflow-hidden flex flex-col relative shadow-inner">
+
+                <!-- แถบสถานะและ Dynamic Island ด้านบนจอโทรศัพท์ -->
+                <div class="flex items-center justify-between px-6 pt-3 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
+                    <span id="phone-clock">09:41</span>
+                    <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-strawberry-400 animate-pulse"></span>
+                        <span class="text-[9px] text-cream-100 font-cute tracking-wider">aurelia</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-mocha-700 border border-mocha-500"></span>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-mocha-700">
+                        <i class="fa-solid fa-signal text-[10px]"></i>
+                        <i class="fa-solid fa-wifi text-[10px]"></i>
+                        <i class="fa-solid fa-battery-full text-xs text-strawberry-500"></i>
+                    </div>
+                </div>
+
+                <!-- แถบเมนูสลับโหมด: หน้าบ้าน / หลังบ้าน (Demo) -->
+                <header class="sticky top-0 z-20 bg-cream-50/95 backdrop-blur-md border-b-2 border-strawberry-200 px-3.5 py-2.5 shrink-0">
+                    <div class="flex items-center justify-between gap-1.5">
+                        <div class="flex items-center gap-1.5 min-w-0">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-strawberry-100 text-strawberry-500 border border-strawberry-200 text-base shrink-0">
+                                🎀
                             </span>
-                            <span class="text-[10px] text-strawberry-500 font-medium block">Payment Portal</span>
-                        </div>
-                    </div>
-
-                    <!-- ปุ่มสลับมุมมอง: หน้าบ้าน (ลูกค้า) / หลังบ้าน (Demo) -->
-                    <nav class="flex items-center bg-cream-200 p-1 rounded-full border border-strawberry-200 shrink-0" aria-label="สลับโหมดหน้าเว็บ">
-                        <button id="tab-customer" onclick="switchView('customer')" 
-                            class="btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all bg-strawberry-400 text-white shadow-sm">
-                            <i class="fa-solid fa-heart text-[10px]"></i>
-                            <span>หน้าบ้าน</span>
-                        </button>
-                        <button id="tab-admin" onclick="switchView('admin')" 
-                            class="btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-mocha-700 hover:bg-cream-100 transition-all">
-                            <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
-                            <span>หลังบ้าน</span>
-                        </button>
-                    </nav>
-                </div>
-            </header>
-
-            <!-- ==================== SCROLLABLE SCREEN CONTENT ==================== -->
-            <main id="phone-scroll-area" class="flex-1 overflow-y-auto phone-scroll px-3.5 pt-4 pb-12 space-y-5">
-
-                <!-- ============================================================ -->
-                <!-- 1. CUSTOMER VIEW (หน้าบ้าน - มุมมองลูกค้า)                    -->
-                <!-- ============================================================ -->
-                <section id="view-customer" class="space-y-5">
-                    
-                    <!-- ส่วนหัว: แบนเนอร์ 1920x800px + โลโก้ร้าน -->
-                    <div class="coquette-card rounded-3xl overflow-hidden relative">
-                        
-                        <!-- พื้นที่แบนเนอร์อัตราส่วน 1920x800px -->
-                        <div class="relative w-full banner-aspect bg-strawberry-100 overflow-hidden group">
-                            <img id="display-banner" src="" alt="แบนเนอร์ร้าน aurelia store ขนาด 1920x800px" 
-                                 class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]">
-                            
-                            <!-- ป้ายบอกสัดส่วนและสถานะ Demo มุมซ้ายบน -->
-                            <div class="absolute top-2 left-2 flex flex-wrap items-center gap-1">
-                                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-mocha-700/85 text-cream-50 backdrop-blur-sm shadow">
-                                    🏷️ DEMO 1920×800
-                                </span>
-                            </div>
-
-                            <!-- ปุ่มลัดอัปโหลดเปลี่ยนแบนเนอร์ทดลองดูทันที -->
-                            <label for="quick-banner-upload" title="ลองอัปโหลดรูปแบนเนอร์ขนาด 1920x800px ของคุณ"
-                                class="btn-bounce cursor-pointer absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-cream-50/95 hover:bg-white text-mocha-700 text-[11px] font-medium border border-strawberry-300 shadow flex items-center gap-1">
-                                <i class="fa-solid fa-image text-strawberry-500"></i>
-                                <span>เปลี่ยนแบนเนอร์</span>
-                            </label>
-                            <input type="file" id="quick-banner-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'banner')">
-                        </div>
-
-                        <!-- ขอบหยักลูกไม้คั่นแบนเนอร์ -->
-                        <div class="lace-divider -mt-2 relative z-10"></div>
-
-                        <!-- ส่วนข้อมูลโปรไฟล์ร้านและโลโก้ -->
-                        <div class="px-4 pb-5 pt-1 text-center relative">
-                            <!-- โลโก้วงกลมขอบหยัก -->
-                            <div class="relative inline-block -mt-12 mb-2.5">
-                                <div class="w-20 h-20 rounded-full overflow-hidden bg-cream-100 logo-scallop-ring mx-auto relative">
-                                    <img id="display-logo" src="" alt="โลโก้ร้าน aurelia store" class="w-full h-full object-cover">
-                                </div>
-                                <!-- ป้าย DEMO บนโลโก้ -->
-                                <span class="absolute -top-1 -right-2 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-strawberry-500 text-white border border-white shadow">
-                                    DEMO
-                                </span>
-                                <!-- ปุ่มกล้องเปลี่ยนรูปโลโก้ -->
-                                <label for="quick-logo-upload" title="ลองอัปโหลดรูปโลโก้ของคุณ"
-                                    class="btn-bounce cursor-pointer absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-cream-50 hover:bg-strawberry-100 text-mocha-700 border border-strawberry-300 shadow flex items-center justify-center text-[11px]">
-                                    <i class="fa-solid fa-camera text-strawberry-500"></i>
-                                </label>
-                                <input type="file" id="quick-logo-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'logo')">
-                            </div>
-
-                            <!-- ชื่อร้านและคำทักทาย -->
-                            <div class="flex items-center justify-center gap-1.5 mb-1">
-                                <span class="text-strawberry-400 text-xs">🍓</span>
-                                <h1 id="display-store-name" class="font-cute font-bold text-xl text-mocha-800 tracking-wide">
+                            <div class="truncate">
+                                <span id="nav-store-name" class="font-cute font-bold text-base text-mocha-700 tracking-wide block leading-none truncate">
                                     aurelia store
-                                </h1>
-                                <span class="text-strawberry-400 text-xs">🍫</span>
-                            </div>
-                            
-                            <p id="display-welcome-msg" class="text-xs text-mocha-500 leading-relaxed mt-1">
-                                ขอบคุณที่อุดหนุนร้านเรานะคะ 🎀 สามารถเลือกคัดลอกเลขบัญชี วอเล็ท หรือบันทึกรูป QR Code ด้านล่างได้เลยค่ะ
-                            </p>
-
-                            <!-- แถบแจ้งเตือนโหมด Demo -->
-                            <div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-strawberry-100/80 border border-strawberry-200 text-[10px] text-mocha-700">
-                                <span class="w-1.5 h-1.5 rounded-full bg-strawberry-500 animate-pulse shrink-0"></span>
-                                <span><strong>DEMO:</strong> ข้อมูลบัญชีด้านล่างเป็นตัวอย่างสำหรับทดสอบ</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- หัวข้อรายการช่องทางการโอนเงิน -->
-                    <div class="flex items-center justify-between px-1">
-                        <h2 class="font-bold text-base text-mocha-800 flex items-center gap-1.5">
-                            <span class="w-7 h-7 rounded-xl bg-strawberry-200/70 text-mocha-700 flex items-center justify-center text-xs">💳</span>
-                            <span>ช่องทางการชำระเงิน</span>
-                        </h2>
-                        <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-cream-200 text-mocha-500 border border-strawberry-200">
-                            แตะเพื่อคัดลอก
-                        </span>
-                    </div>
-
-                    <!-- รายการการ์ดช่องทางการโอนเงิน (Render จาก JavaScript) -->
-                    <div id="payment-cards-container" class="space-y-3.5">
-                        <!-- การ์ดจะถูกสร้างอัตโนมัติที่นี่ -->
-                    </div>
-
-                    <!-- การ์ดคำแนะนำ & ปุ่มแจ้งโอนเงิน / ติดต่อร้าน (Demo) -->
-                    <div class="coquette-card rounded-3xl p-4 bg-gradient-to-br from-cream-50 to-strawberry-100/40">
-                        <div class="flex items-start gap-2.5 mb-3">
-                            <div class="w-9 h-9 rounded-2xl bg-strawberry-100 border border-strawberry-200 flex items-center justify-center text-lg shrink-0">
-                                🧁
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-sm text-mocha-800">โอนเรียบร้อยแล้ว แจ้งสลิปได้ที่นี่</h3>
-                                <p class="text-[11px] text-mocha-500 mt-0.5 leading-relaxed">
-                                    ตรวจสอบชื่อบัญชีให้ถูกต้องก่อนโอน และส่งสลิปผ่านช่องทางติดต่อของร้านนะคะ
-                                </p>
+                                </span>
+                                <span class="text-[10px] text-strawberry-500 font-medium block">Payment Channels</span>
                             </div>
                         </div>
 
-                        <div class="space-y-2">
-                            <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะพาไปยังแชท LINE ของร้านค่ะ 💬')" 
-                                class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-[#06C755] hover:bg-[#05b34c] text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-line text-base"></i>
-                                <span>แจ้งโอนทาง LINE</span>
-                                <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
+                        <nav class="flex items-center bg-cream-200 p-1 rounded-full border border-strawberry-200 shrink-0" aria-label="สลับโหมดหน้าบ้านและหลังบ้าน">
+                            <button id="tab-customer" onclick="switchView('customer')"
+                                class="btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all bg-strawberry-400 text-white shadow-sm">
+                                <i class="fa-solid fa-heart text-[10px]"></i>
+                                <span>หน้าบ้าน</span>
                             </button>
-
-                            <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะพาไปยัง Instagram DM ของร้านค่ะ 🎀')" 
-                                class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-gradient-to-r from-strawberry-400 to-strawberry-500 hover:opacity-95 text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-instagram text-base"></i>
-                                <span>แจ้งโอนทาง Instagram</span>
-                                <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
+                            <button id="tab-admin" onclick="switchView('admin')"
+                                class="btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-mocha-700 hover:bg-cream-100 transition-all">
+                                <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
+                                <span>หลังบ้าน</span>
                             </button>
-                        </div>
+                        </nav>
                     </div>
+                </header>
 
-                    <!-- Footer ภายในจอโทรศัพท์ -->
-                    <footer class="text-center pt-2 pb-4 text-[11px] text-mocha-500">
-                        <p class="font-cute font-medium text-xs text-mocha-700">🎀 aurelia store — Payment Portal 🎀</p>
-                        <p class="text-[10px] mt-0.5">เทมเพลตตัวอย่าง (DEMO MODE)</p>
-                    </footer>
+                <!-- ==================== พื้นที่เนื้อหาเลื่อนขึ้น-ลงภายในจอโทรศัพท์ ==================== -->
+                <main id="phone-scroll-area" class="flex-1 overflow-y-auto phone-scroll px-3.5 pt-4 pb-12 space-y-5">
 
-                </section>
+                    <!-- 1. หน้าบ้าน (มุมมองลูกค้า) -->
+                    <section id="view-customer" class="space-y-5">
 
-                <!-- ============================================================ -->
-                <!-- 2. ADMIN DEMO VIEW (หลังบ้าน - มุมมองเจ้าของร้านตัวอย่าง)     -->
-                <!-- ============================================================ -->
-                <section id="view-admin" class="hidden space-y-4">
-                    
-                    <!-- กล่องคำเตือนความปลอดภัยที่ชัดเจน -->
-                    <div class="rounded-3xl p-3.5 bg-amber-50 border-2 border-amber-300 text-amber-950 shadow-xs">
-                        <div class="flex items-start gap-2.5">
-                            <div class="w-8 h-8 rounded-xl bg-amber-200/80 text-amber-800 flex items-center justify-center text-sm shrink-0 mt-0.5">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <div class="space-y-1">
-                                <h2 class="font-bold text-xs text-amber-900">
-                                    โหมดหลังบ้านตัวอย่าง (Admin Demo)
-                                </h2>
-                                <p class="text-[11px] text-amber-800 leading-relaxed">
-                                    สำหรับทดลองแก้ไขข้อมูลร้านและช่องทางรับเงินในเครื่องนี้ชั่วคราว (LocalStorage) <strong>ไม่ใช่ระบบปลอดภัยจริง และไม่ได้เชื่อมฐานข้อมูลออนไลน์</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- การ์ดแบนเนอร์ 1920x800px + โลโก้ร้าน + ชื่อร้าน + คำต้อนรับ -->
+                        <div class="coquette-card rounded-3xl overflow-hidden relative">
+                            <div class="relative w-full banner-aspect bg-strawberry-100 overflow-hidden group">
+                                <img id="display-banner" src="" alt="แบนเนอร์ร้าน aurelia store ขนาด 1920x800px"
+                                     class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]">
 
-                    <!-- ฟอร์มที่ 1: ตั้งค่าข้อมูลร้านและรูปภาพ -->
-                    <div class="coquette-card rounded-3xl p-4 space-y-4">
-                        <div class="flex items-center justify-between border-b border-strawberry-100 pb-2.5">
-                            <h3 class="font-bold text-sm text-mocha-800 flex items-center gap-1.5">
-                                <span>🎀</span> ตั้งค่าหน้าร้าน & รูปภาพ
-                            </h3>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-strawberry-100 text-strawberry-500 font-semibold">DEMO</span>
-                        </div>
-
-                        <div class="space-y-3">
-                            <!-- ชื่อร้าน -->
-                            <div>
-                                <label class="block text-xs font-medium text-mocha-700 mb-1">ชื่อร้าน (Store Name)</label>
-                                <input type="text" id="admin-store-name" placeholder="เช่น aurelia store"
-                                    class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs">
-                            </div>
-
-                            <!-- ข้อความต้อนรับ -->
-                            <div>
-                                <label class="block text-xs font-medium text-mocha-700 mb-1">ข้อความต้อนรับลูกค้า</label>
-                                <textarea id="admin-welcome-msg" rows="2" placeholder="กรอกข้อความต้อนรับ..."
-                                    class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs"></textarea>
-                            </div>
-
-                            <!-- รูปโลโก้ร้าน -->
-                            <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
-                                <label class="block text-xs font-semibold text-mocha-800">1. รูปโลโก้ร้าน (ทรงกลม)</label>
-                                <input type="text" id="admin-logo-url" placeholder="วางลิงก์รูปภาพ (https://...)"
-                                    class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-xs">
-                                <label class="btn-bounce cursor-pointer w-full py-2 px-3 rounded-xl bg-strawberry-100 hover:bg-strawberry-200 text-mocha-800 font-medium text-xs text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-upload text-strawberry-500"></i>
-                                    <span>อัปโหลดไฟล์โลโก้จากเครื่อง</span>
-                                    <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-logo-url')">
-                                </label>
-                            </div>
-
-                            <!-- รูปแบนเนอร์ 1920x800px -->
-                            <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <label class="text-xs font-semibold text-mocha-800">2. รูปแบนเนอร์ (1920×800px)</label>
-                                    <span class="text-[10px] text-strawberry-500 font-medium">2.4 : 1</span>
+                                <div class="absolute top-2 left-2 flex flex-wrap items-center gap-1">
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-mocha-700/85 text-cream-50 backdrop-blur-sm shadow">
+                                        🏷️ DEMO 1920×800
+                                    </span>
                                 </div>
-                                <input type="text" id="admin-banner-url" placeholder="วางลิงก์รูปแบนเนอร์ (https://...)"
-                                    class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-xs">
-                                <label class="btn-bounce cursor-pointer w-full py-2 px-3 rounded-xl bg-strawberry-100 hover:bg-strawberry-200 text-mocha-800 font-medium text-xs text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-upload text-strawberry-500"></i>
-                                    <span>อัปโหลดไฟล์แบนเนอร์จากเครื่อง</span>
-                                    <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-banner-url')">
+
+                                <label for="quick-banner-upload" title="อัปโหลดหรือเปลี่ยนแบนเนอร์ 1920x800px"
+                                    class="btn-bounce cursor-pointer absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-cream-50/95 hover:bg-white text-mocha-700 text-[11px] font-medium border border-strawberry-300 shadow flex items-center gap-1">
+                                    <i class="fa-solid fa-image text-strawberry-500"></i>
+                                    <span>เปลี่ยนแบนเนอร์</span>
                                 </label>
+                                <input type="file" id="quick-banner-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'banner')">
                             </div>
 
-                            <button onclick="saveStoreSettings()" 
-                                class="btn-bounce w-full py-3 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-floppy-disk"></i>
-                                <span>บันทึกข้อมูลหน้าร้าน</span>
+                            <div class="lace-divider -mt-2 relative z-10"></div>
+
+                            <div class="px-4 pb-5 pt-1 text-center relative">
+                                <div class="relative inline-block -mt-12 mb-2.5">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden bg-cream-100 logo-scallop-ring mx-auto relative">
+                                        <img id="display-logo" src="" alt="โลโก้ร้าน aurelia store" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="absolute -top-1 -right-2 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-strawberry-500 text-white border border-white shadow">
+                                        DEMO
+                                    </span>
+                                    <label for="quick-logo-upload" title="อัปโหลดหรือเปลี่ยนโลโก้ร้าน"
+                                        class="btn-bounce cursor-pointer absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-cream-50 hover:bg-strawberry-100 text-mocha-700 border border-strawberry-300 shadow flex items-center justify-center text-[11px]">
+                                        <i class="fa-solid fa-camera text-strawberry-500"></i>
+                                    </label>
+                                    <input type="file" id="quick-logo-upload" accept="image/*" class="hidden" onchange="handleQuickImageUpload(event, 'logo')">
+                                </div>
+
+                                <div class="flex items-center justify-center gap-1.5 mb-1">
+                                    <span class="text-strawberry-400 text-xs">🍓</span>
+                                    <h1 id="display-store-name" class="font-cute font-bold text-xl text-mocha-800 tracking-wide">
+                                        aurelia store
+                                    </h1>
+                                    <span class="text-strawberry-400 text-xs">🍫</span>
+                                </div>
+
+                                <p id="display-welcome-msg" class="text-xs text-mocha-500 leading-relaxed mt-1">
+                                    ขอบคุณที่อุดหนุนร้านเรานะคะ 🎀 สามารถเลือกคัดลอกเลขบัญชี วอเล็ท หรือบันทึกรูป QR Code ด้านล่างได้เลยค่ะ
+                                </p>
+
+                                <div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-strawberry-100/80 border border-strawberry-200 text-[10px] text-mocha-700">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-strawberry-500 animate-pulse shrink-0"></span>
+                                    <span><strong>DEMO:</strong> ข้อมูลบัญชีและ QR Code เป็นตัวอย่างสำหรับทดสอบ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- หัวข้อช่องทางการชำระเงิน -->
+                        <div class="flex items-center justify-between px-1">
+                            <h2 class="font-bold text-base text-mocha-800 flex items-center gap-1.5">
+                                <span class="w-7 h-7 rounded-xl bg-strawberry-200/70 text-mocha-700 flex items-center justify-center text-xs">💳</span>
+                                <span>ช่องทางการโอนเงิน</span>
+                            </h2>
+                            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-cream-200 text-mocha-500 border border-strawberry-200">
+                                แตะเพื่อคัดลอก
+                            </span>
+                        </div>
+
+                        <!-- รายการการ์ดบัญชี วอเล็ท และ QR Code -->
+                        <div id="payment-cards-container" class="space-y-3.5"></div>
+
+                        <!-- ปุ่มแจ้งโอน (Demo) -->
+                        <div class="coquette-card rounded-3xl p-4 bg-gradient-to-br from-cream-50 to-strawberry-100/40">
+                            <div class="flex items-start gap-2.5 mb-3">
+                                <div class="w-9 h-9 rounded-2xl bg-strawberry-100 border border-strawberry-200 flex items-center justify-center text-lg shrink-0">
+                                    🧁
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-sm text-mocha-800">โอนแล้วแจ้งสลิปได้ที่นี่</h3>
+                                    <p class="text-[11px] text-mocha-500 mt-0.5 leading-relaxed">
+                                        ตรวจสอบชื่อบัญชีให้ถูกต้องก่อนโอน และส่งสลิปให้แอดมินนะคะ
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะเปิดแชท LINE ของร้านค่ะ 💬')"
+                                    class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-[#06C755] hover:bg-[#05b34c] text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
+                                    <i class="fa-brands fa-line text-base"></i>
+                                    <span>แจ้งโอนทาง LINE</span>
+                                    <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
+                                </button>
+
+                                <button onclick="showToast('ลิงก์ตัวอย่าง (DEMO): ในเว็บจริงจะเปิด Instagram ของร้านค่ะ 🎀')"
+                                    class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-gradient-to-r from-strawberry-400 to-strawberry-500 hover:opacity-95 text-white font-medium text-xs shadow-sm flex items-center justify-center gap-2">
+                                    <i class="fa-brands fa-instagram text-base"></i>
+                                    <span>แจ้งโอนทาง Instagram</span>
+                                    <span class="text-[9px] bg-black/20 px-1.5 py-0.5 rounded-md">DEMO</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <footer class="text-center pt-2 pb-4 text-[11px] text-mocha-500">
+                            <p class="font-cute font-medium text-xs text-mocha-700">🎀 aurelia store — Payment Channels 🎀</p>
+                            <p class="text-[10px] mt-0.5">เทมเพลตตัวอย่าง (DEMO MODE)</p>
+                        </footer>
+                    </section>
+
+                    <!-- 2. หน้าหลังบ้าน (Admin Demo - เก็บชั่วคราวใน LocalStorage ไม่มีรหัสผ่าน) -->
+                    <section id="view-admin" class="hidden space-y-4">
+
+                        <div class="rounded-3xl p-3.5 bg-amber-50 border-2 border-amber-300 text-amber-950 shadow-xs">
+                            <div class="flex items-start gap-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-amber-200/80 text-amber-800 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </div>
+                                <div class="space-y-1">
+                                    <h2 class="font-bold text-xs text-amber-900">
+                                        โหมดหลังบ้านตัวอย่าง (Admin Demo)
+                                    </h2>
+                                    <p class="text-[11px] text-amber-800 leading-relaxed">
+                                        บันทึกข้อมูลชั่วคราวในเบราว์เซอร์เครื่องนี้ (LocalStorage) <strong>ไม่ใช่ระบบปลอดภัยจริง ไม่มีรหัสผ่าน และยังไม่เชื่อมฐานข้อมูลจริง</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ฟอร์มตั้งค่าชื่อร้าน คำทักทาย แบนเนอร์ 1920x800px และโลโก้ -->
+                        <div class="coquette-card rounded-3xl p-4 space-y-4">
+                            <div class="flex items-center justify-between border-b border-strawberry-100 pb-2.5">
+                                <h3 class="font-bold text-sm text-mocha-800 flex items-center gap-1.5">
+                                    <span>🎀</span> ตั้งค่าหน้าร้าน & รูปภาพ
+                                </h3>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-strawberry-100 text-strawberry-500 font-semibold">DEMO</span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-medium text-mocha-700 mb-1">ชื่อร้าน</label>
+                                    <input type="text" id="admin-store-name" placeholder="aurelia store"
+                                        class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-medium text-mocha-700 mb-1">คำต้อนรับลูกค้า</label>
+                                    <textarea id="admin-welcome-msg" rows="2" placeholder="กรอกคำต้อนรับ..."
+                                        class="w-full px-3 py-2.5 rounded-xl bg-cream-50 border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-mocha-800 text-xs"></textarea>
+                                </div>
+
+                                <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
+                                    <label class="block text-xs font-semibold text-mocha-800">1. โลโก้ร้าน</label>
+                                    <input type="text" id="admin-logo-url" placeholder="ลิงก์รูปโลโก้ (https://...)"
+                                        class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-xs">
+                                    <label class="btn-bounce cursor-pointer w-full py-2 px-3 rounded-xl bg-strawberry-100 hover:bg-strawberry-200 text-mocha-800 font-medium text-xs text-center flex items-center justify-center gap-1.5">
+                                        <i class="fa-solid fa-upload text-strawberry-500"></i>
+                                        <span>อัปโหลดรูปโลโก้จากเครื่อง</span>
+                                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-logo-url')">
+                                    </label>
+                                </div>
+
+                                <div class="p-3 rounded-2xl bg-cream-100/80 border border-strawberry-200 space-y-2">
+                                    <div class="flex items-center justify-between">
+                                        <label class="text-xs font-semibold text-mocha-800">2. แบนเนอร์ (1920×800px)</label>
+                                        <span class="text-[10px] text-strawberry-500 font-medium">2.4 : 1</span>
+                                    </div>
+                                    <input type="text" id="admin-banner-url" placeholder="ลิงก์รูปแบนเนอร์ (https://...)"
+                                        class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-xs">
+                                    <label class="btn-bounce cursor-pointer w-full py-2 px-3 rounded-xl bg-strawberry-100 hover:bg-strawberry-200 text-mocha-800 font-medium text-xs text-center flex items-center justify-center gap-1.5">
+                                        <i class="fa-solid fa-upload text-strawberry-500"></i>
+                                        <span>อัปโหลดรูปแบนเนอร์จากเครื่อง</span>
+                                        <input type="file" accept="image/*" class="hidden" onchange="handleAdminFileSelect(event, 'admin-banner-url')">
+                                    </label>
+                                </div>
+
+                                <button onclick="saveStoreSettings()"
+                                    class="btn-bounce w-full py-3 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span>บันทึกข้อมูลหน้าร้าน</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- จัดการช่องทางการโอนเงิน (เพิ่ม / แก้ไข / ลบ) -->
+                        <div class="coquette-card rounded-3xl p-4 space-y-3.5">
+                            <div class="flex items-center justify-between gap-2 border-b border-strawberry-100 pb-2.5">
+                                <h3 class="font-bold text-sm text-mocha-800 flex items-center gap-1.5">
+                                    <span>💳</span> ช่องทางการโอนเงิน
+                                </h3>
+                                <button onclick="openAddPaymentModal()"
+                                    class="btn-bounce px-3 py-1.5 rounded-xl bg-mocha-700 hover:bg-mocha-800 text-cream-50 text-xs font-medium flex items-center gap-1 shadow-xs">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>เพิ่มใหม่</span>
+                                </button>
+                            </div>
+
+                            <div id="admin-payment-list" class="space-y-2.5"></div>
+                        </div>
+
+                        <!-- ปุ่มรีเซ็ตข้อมูล Demo -->
+                        <div class="pt-1 pb-4 text-center">
+                            <button onclick="confirmResetDemo()"
+                                class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-cream-200 hover:bg-red-100 text-mocha-700 hover:text-red-700 border border-strawberry-200 text-xs font-medium flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                <span>รีเซ็ตข้อมูล Demo</span>
                             </button>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- ฟอร์มที่ 2: จัดการช่องทางการโอนเงิน (เพิ่ม / แก้ไข / ลบ) -->
-                    <div class="coquette-card rounded-3xl p-4 space-y-3.5">
-                        <div class="flex items-center justify-between gap-2 border-b border-strawberry-100 pb-2.5">
-                            <h3 class="font-bold text-sm text-mocha-800 flex items-center gap-1.5">
-                                <span>💳</span> ช่องทางรับเงิน
-                            </h3>
-                            <button onclick="openAddPaymentModal()" 
-                                class="btn-bounce px-3 py-1.5 rounded-xl bg-mocha-700 hover:bg-mocha-800 text-cream-50 text-xs font-medium flex items-center gap-1 shadow-xs">
-                                <i class="fa-solid fa-plus"></i>
-                                <span>เพิ่มใหม่</span>
-                            </button>
-                        </div>
+                </main>
 
-                        <!-- รายการช่องทางที่มีอยู่สำหรับแก้ไข/ลบ -->
-                        <div id="admin-payment-list" class="space-y-2.5">
-                            <!-- Render จาก JS -->
-                        </div>
-                    </div>
+                <!-- แจ้งเตือน Toast ภายในหน้าจอโทรศัพท์ -->
+                <div id="toast-container" class="absolute bottom-7 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex flex-col items-center gap-1.5 w-[88%]"></div>
 
-                    <!-- ปุ่มรีเซ็ตกลับเป็นค่าเริ่มต้น Demo -->
-                    <div class="pt-1 pb-4 text-center space-y-2">
-                        <button onclick="confirmResetDemo()" 
-                            class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-cream-200 hover:bg-red-100 text-mocha-700 hover:text-red-700 border border-strawberry-200 text-xs font-medium flex items-center justify-center gap-1.5">
-                            <i class="fa-solid fa-rotate-left"></i>
-                            <span>รีเซ็ตกลับเป็นค่าเริ่มต้น Demo</span>
-                        </button>
-                    </div>
-                </section>
+                <!-- แถบ Home ด้านล่างจอโทรศัพท์ -->
+                <div class="flex items-center justify-center py-2 bg-cream-50/95 shrink-0 select-none">
+                    <div class="w-32 h-1.5 rounded-full bg-mocha-700/25"></div>
+                </div>
 
-            </main>
-
-            <!-- ==================== TOAST NOTIFICATION (แสดงภายในจอโทรศัพท์) ==================== -->
-            <div id="toast-container" class="absolute bottom-7 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex flex-col items-center gap-1.5 w-[88%]">
             </div>
-
-            <!-- HOME INDICATOR BAR (แถบขีดด้านล่างจอสมาร์ทโฟน) -->
-            <div class="flex items-center justify-center py-2 bg-cream-50/95 shrink-0 select-none">
-                <div class="w-32 h-1.5 rounded-full bg-mocha-700/25"></div>
-            </div>
-
         </div>
     </div>
-    </div>
 
-    <!-- ==================== MODAL: เพิ่ม/แก้ไขช่องทางการโอนเงิน ==================== -->
+    <!-- MODAL: เพิ่ม/แก้ไขช่องทางการโอนเงิน -->
     <div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-mocha-800/40 backdrop-blur-xs">
         <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-strawberry-100 pb-3">
@@ -551,15 +527,15 @@
                     <label class="block text-xs font-semibold text-mocha-700 mb-1">ประเภทช่องทาง</label>
                     <select id="edit-payment-type" onchange="toggleQrInputVisibility()"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
-                        <option value="bank">บัญชีธนาคาร (Bank Account)</option>
-                        <option value="wallet">TrueMoney Wallet / วอเล็ท</option>
-                        <option value="qr">QR Code พร้อมเพย์</option>
+                        <option value="bank">บัญชีธนาคาร</option>
+                        <option value="wallet">วอเล็ท / พร้อมเพย์</option>
+                        <option value="qr">QR Code</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อธนาคาร / หัวข้อช่องทาง</label>
-                    <input type="text" id="edit-payment-provider" placeholder="เช่น ธนาคารกสิกรไทย (KBank)"
+                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อธนาคาร / ชื่อช่องทาง</label>
+                    <input type="text" id="edit-payment-provider" placeholder="เช่น ธนาคารกสิกรไทย หรือ TrueMoney Wallet"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
                 </div>
 
@@ -570,41 +546,40 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อบัญชี (Account Name)</label>
-                    <input type="text" id="edit-payment-account-name" placeholder="เช่น บจก. ออเรเลีย สโตร์ (DEMO)"
+                    <label class="block text-xs font-semibold text-mocha-700 mb-1">ชื่อบัญชี</label>
+                    <input type="text" id="edit-payment-account-name" placeholder="เช่น aurelia store (DEMO)"
                         class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-strawberry-200 focus:border-strawberry-400 focus:outline-none text-sm">
                 </div>
 
                 <div id="qr-custom-image-box" class="hidden p-3 rounded-xl bg-strawberry-100/50 border border-strawberry-200 space-y-2">
-                    <label class="block text-xs font-semibold text-mocha-800">อัปโหลดรูป QR Code ของจริง (ถ้ามี)</label>
-                    <p class="text-[11px] text-mocha-500">หากเว้นว่าง ระบบจะสร้างรูป QR Code จำลอง (Demo) ให้อัตโนมัติค่ะ</p>
+                    <label class="block text-xs font-semibold text-mocha-800">อัปโหลดรูป QR Code (ถ้าไม่เลือกจะสร้างภาพ Demo อัตโนมัติ)</label>
                     <input type="file" accept="image/*" onchange="handleQrFileUpload(event)" class="text-xs w-full">
                     <input type="hidden" id="edit-payment-qr-data">
                 </div>
             </div>
 
             <div class="flex gap-2.5 pt-2">
-                <button onclick="closePaymentModal()" 
+                <button onclick="closePaymentModal()"
                     class="flex-1 py-3 rounded-xl bg-cream-200 text-mocha-700 font-medium text-sm hover:bg-cream-300">
                     ยกเลิก
                 </button>
-                <button onclick="savePaymentMethod()" 
+                <button onclick="savePaymentMethod()"
                     class="flex-1 py-3 rounded-xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-sm shadow">
-                    บันทึกข้อมูล
+                    บันทึก
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- ==================== MODAL: ยืนยันการรีเซ็ต (แทน confirm()) ==================== -->
+    <!-- MODAL: ยืนยันการรีเซ็ตข้อมูล Demo -->
     <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-mocha-800/40 backdrop-blur-xs">
         <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
             <div class="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-xl mx-auto">
                 <i class="fa-solid fa-rotate-left"></i>
             </div>
-            <h4 class="font-bold text-lg text-mocha-800">รีเซ็ตข้อมูลกลับเป็นค่าเริ่มต้น?</h4>
+            <h4 class="font-bold text-lg text-mocha-800">รีเซ็ตข้อมูล Demo?</h4>
             <p class="text-xs sm:text-sm text-mocha-500">
-                ข้อมูลที่คุณทดลองแก้ไขทั้งหมดจะกลับไปเป็นค่าตัวอย่าง Demo เริ่มต้นของร้าน aurelia store ค่ะ
+                ข้อมูลที่แก้ไขในเครื่องนี้จะกลับเป็นค่าตัวอย่างเริ่มต้นของร้าน aurelia store ค่ะ
             </p>
             <div class="flex gap-2.5 pt-2">
                 <button onclick="closeResetModal()" class="flex-1 py-2.5 rounded-xl bg-cream-200 text-mocha-700 font-medium text-sm">
@@ -617,19 +592,14 @@
         </div>
     </div>
 
-    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        // ------------------------------------------------------------
-        // 1. ฟังก์ชันสร้างภาพกราฟิก Demo (แบนเนอร์ 1920x800, โลโก้, QR Code)
-        //    ช่วยให้เว็บเปิดได้สวยงามทันทีโดยไม่ต้องพึ่งลิงก์ภายนอกที่อาจเสีย
-        // ------------------------------------------------------------
+        // สร้างรูปแบนเนอร์ 1920x800px ตัวอย่าง (Demo)
         function generateDefaultBannerDataUrl() {
             const canvas = document.createElement('canvas');
             canvas.width = 1920;
             canvas.height = 800;
             const ctx = canvas.getContext('2d');
 
-            // พื้นหลังไล่เฉด Neapolitan Pastel (ชมพูสตรอว์เบอร์รี - ครีมวานิลลา)
             const grad = ctx.createLinearGradient(0, 0, 1920, 800);
             grad.addColorStop(0, '#FFD6E3');
             grad.addColorStop(0.5, '#FFF5EE');
@@ -637,71 +607,46 @@
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 1920, 800);
 
-            // ลายทางแนวตั้งพาสเทลอ่อนๆ สไตล์ร้านขนม
             ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
             for (let x = 0; x < 1920; x += 120) {
                 ctx.fillRect(x, 0, 60, 800);
             }
 
-            // วงกลมตกแต่งฟุ้งๆ
-            const circles = [
-                { x: 260, y: 200, r: 160, color: 'rgba(255, 164, 192, 0.25)' },
-                { x: 1680, y: 620, r: 210, color: 'rgba(255, 164, 192, 0.25)' },
-                { x: 1550, y: 180, r: 110, color: 'rgba(141, 102, 89, 0.12)' },
-                { x: 350, y: 650, r: 130, color: 'rgba(255, 255, 255, 0.7)' }
-            ];
-            circles.forEach(c => {
-                ctx.beginPath();
-                ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-                ctx.fillStyle = c.color;
-                ctx.fill();
-            });
-
-            // กรอบเส้นประน่ารักด้านใน
             ctx.strokeStyle = '#F45D8B';
             ctx.lineWidth = 6;
             ctx.setLineDash([20, 16]);
             ctx.strokeRect(48, 48, 1824, 704);
             ctx.setLineDash([]);
 
-            // ข้อความหลักตรงกลางแบนเนอร์
             ctx.textAlign = 'center';
             ctx.fillStyle = '#5E4036';
             ctx.font = 'bold 108px "Fredoka", sans-serif';
             ctx.fillText('🎀 aurelia store 🎀', 960, 385);
 
-            // ข้อความรอง
             ctx.fillStyle = '#8D6659';
             ctx.font = '500 44px "Prompt", sans-serif';
-            ctx.fillText('Sweet & Coquette Official Payment Channels', 960, 465);
-
-            // ป้ายระบุขนาด 1920x800px DEMO
-            ctx.fillStyle = 'rgba(244, 93, 139, 0.15)';
-            ctx.beginPath();
-            ctx.roundRect(710, 515, 500, 64, 32);
-            ctx.fill();
+            ctx.fillText('Coquette Payment Channels', 960, 465);
 
             ctx.fillStyle = '#F45D8B';
-            ctx.font = '600 30px "Prompt", sans-serif';
-            ctx.fillText('✨ DEMO BANNER • 1920 × 800 px ✨', 960, 558);
+            ctx.font = '600 32px "Prompt", sans-serif';
+            ctx.fillText('✨ DEMO BANNER • 1920 × 800 px ✨', 960, 545);
 
             return canvas.toDataURL('image/png');
         }
 
+        // สร้างรูปโลโก้ตัวอย่าง (Demo)
         function generateDefaultLogoDataUrl() {
             const canvas = document.createElement('canvas');
             canvas.width = 500;
             canvas.height = 500;
             const ctx = canvas.getContext('2d');
 
-            // พื้นหลังครีมชมพู
             const grad = ctx.createRadialGradient(250, 200, 40, 250, 250, 250);
             grad.addColorStop(0, '#FFFDFB');
             grad.addColorStop(1, '#FFD6E3');
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 500, 500);
 
-            // วงกลมขอบน้ำตาลช็อกโกแลต
             ctx.beginPath();
             ctx.arc(250, 250, 215, 0, Math.PI * 2);
             ctx.strokeStyle = '#8D6659';
@@ -710,7 +655,6 @@
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // ไอคอนโบว์ & ตัวอักษรย่อ
             ctx.textAlign = 'center';
             ctx.font = '90px sans-serif';
             ctx.fillText('🎀', 250, 205);
@@ -726,27 +670,24 @@
             return canvas.toDataURL('image/png');
         }
 
-        // สร้างรูป QR Code จำลองพร้อมป้าย DEMO ที่ดาวน์โหลดเป็นไฟล์ PNG ได้จริง
+        // สร้างรูป QR Code ตัวอย่าง (.png) ที่ดาวน์โหลดได้จริง
         function generateDemoQrDataUrl(accountName, accountNumber) {
             const canvas = document.createElement('canvas');
             canvas.width = 600;
             canvas.height = 720;
             const ctx = canvas.getContext('2d');
 
-            // การ์ดพื้นหลังสีครีม
             ctx.fillStyle = '#FFFDFB';
             ctx.fillRect(0, 0, 600, 720);
 
-            // แถบหัว PromptPay สไตล์น่ารัก
             ctx.fillStyle = '#FF7EA5';
             ctx.fillRect(0, 0, 600, 95);
 
             ctx.fillStyle = '#FFFFFF';
             ctx.textAlign = 'center';
             ctx.font = 'bold 34px "Fredoka", "Prompt", sans-serif';
-            ctx.fillText('🎀 PROMPTPAY QR (DEMO) 🎀', 300, 60);
+            ctx.fillText('🎀 QR CODE (DEMO) 🎀', 300, 60);
 
-            // กรอบ QR Code ตรงกลาง
             const qrSize = 360;
             const startX = (600 - qrSize) / 2;
             const startY = 135;
@@ -759,17 +700,14 @@
             ctx.fill();
             ctx.stroke();
 
-            // วาดลวดลาย QR Matrix จำลอง (Deterministic pattern)
             const cells = 21;
             const cellSize = qrSize / cells;
             ctx.fillStyle = '#462E26';
 
             for (let r = 0; r < cells; r++) {
                 for (let c = 0; c < cells; c++) {
-                    // เว้นตรงกลางไว้ใส่ป้าย DEMO
                     if (r >= 7 && r <= 13 && c >= 6 && c <= 14) continue;
 
-                    // มุมทั้ง 3 ของ QR Code (Finder patterns)
                     const isTopLeft = r < 7 && c < 7;
                     const isTopRight = r < 7 && c >= cells - 7;
                     const isBottomLeft = r >= cells - 7 && c < 7;
@@ -781,7 +719,6 @@
                             ctx.fillRect(startX + c * cellSize, startY + r * cellSize, cellSize - 1, cellSize - 1);
                         }
                     } else {
-                        // ลายจุดข้อมูลจำลอง
                         if ((r * 7 + c * 13) % 3 === 0 || (r + c) % 4 === 0) {
                             ctx.fillRect(startX + c * cellSize, startY + r * cellSize, cellSize - 1, cellSize - 1);
                         }
@@ -789,7 +726,6 @@
                 }
             }
 
-            // ป้ายคาดกลาง QR Code ระบุชัดว่า DEMO ห้ามโอนจริง
             ctx.fillStyle = '#F45D8B';
             ctx.beginPath();
             ctx.roundRect(startX + 85, startY + 135, 190, 90, 16);
@@ -801,14 +737,13 @@
             ctx.font = '500 18px "Prompt", sans-serif';
             ctx.fillText('ตัวอย่างทดสอบ', 300, startY + 205);
 
-            // ข้อมูลชื่อร้านและเลขพร้อมเพย์ด้านล่าง
             ctx.fillStyle = '#5E4036';
             ctx.font = 'bold 28px "Prompt", sans-serif';
             ctx.fillText(accountName || 'aurelia store (DEMO)', 300, 565);
 
             ctx.fillStyle = '#8D6659';
             ctx.font = '500 24px "Prompt", sans-serif';
-            ctx.fillText(`พร้อมเพย์: ${accountNumber || '099-999-9999'}`, 300, 610);
+            ctx.fillText(`เลขที่/เบอร์: ${accountNumber || '099-999-9999'}`, 300, 610);
 
             ctx.fillStyle = '#F45D8B';
             ctx.font = '500 20px "Prompt", sans-serif';
@@ -817,10 +752,7 @@
             return canvas.toDataURL('image/png');
         }
 
-        // ------------------------------------------------------------
-        // 2. ข้อมูลเริ่มต้น (Default Demo Data)
-        // ------------------------------------------------------------
-        const STORAGE_KEY = 'aurelia_store_demo_v1';
+        const STORAGE_KEY = 'aurelia_store_demo_v2';
 
         function getDefaultData() {
             return {
@@ -834,43 +766,38 @@
                         type: 'bank',
                         provider: 'ธนาคารกสิกรไทย (KBank)',
                         number: '099-9-99999-9',
-                        accountName: 'บจก. ออเรเลีย สโตร์ (DEMO)',
-                        badgeColor: 'bg-[#138f2d]',
+                        accountName: 'aurelia store (DEMO)',
                         icon: '🏦'
                     },
                     {
                         id: 'pay-wallet-1',
                         type: 'wallet',
-                        provider: 'TrueMoney Wallet',
+                        provider: 'TrueMoney Wallet / พร้อมเพย์',
                         number: '099-999-9999',
-                        accountName: 'ออเรเลีย สโตร์ วอเล็ท (DEMO)',
-                        badgeColor: 'bg-[#ff6600]',
+                        accountName: 'aurelia store (DEMO)',
                         icon: '🧡'
                     },
                     {
                         id: 'pay-qr-1',
                         type: 'qr',
-                        provider: 'QR Code พร้อมเพย์ (PromptPay)',
+                        provider: 'QR Code พร้อมเพย์',
                         number: '099-999-9999',
                         accountName: 'aurelia store (DEMO)',
-                        qrImage: '', // ถ้าว่างจะสร้างภาพ Demo อัตโนมัติ
+                        qrImage: '',
                         icon: '📱'
                     }
                 ]
             };
         }
 
-        // โหลดข้อมูลจาก LocalStorage หรือใช้ค่าเริ่มต้น
         let appData = loadAppData();
 
         function loadAppData() {
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    return JSON.parse(saved);
-                }
+                if (saved) return JSON.parse(saved);
             } catch (e) {
-                console.warn('ไม่สามารถอ่าน LocalStorage ได้ ใช้ข้อมูลเริ่มต้นแทน', e);
+                console.warn('อ่าน LocalStorage ไม่ได้ ใช้ข้อมูลเริ่มต้นแทน', e);
             }
             return getDefaultData();
         }
@@ -879,22 +806,17 @@
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
             } catch (e) {
-                showToast('⚠️ รูปภาพมีขนาดใหญ่เกินพื้นที่จำลองชั่วคราว แนะนำใช้รูปขนาดเล็กลงค่ะ');
+                showToast('⚠️ ไฟล์รูปภาพมีขนาดใหญ่เกินพื้นที่จำลองชั่วคราวค่ะ');
             }
         }
 
-        // ------------------------------------------------------------
-        // 3. การแสดงผลหน้าบ้าน (Render Customer View)
-        // ------------------------------------------------------------
         function renderCustomerView() {
-            // อัปเดตส่วนหัวร้าน
             document.getElementById('nav-store-name').textContent = appData.storeName;
             document.getElementById('display-store-name').textContent = appData.storeName;
             document.getElementById('display-welcome-msg').textContent = appData.welcomeMsg;
             document.getElementById('display-logo').src = appData.logoUrl || generateDefaultLogoDataUrl();
             document.getElementById('display-banner').src = appData.bannerUrl || generateDefaultBannerDataUrl();
 
-            // Render การ์ดช่องทางการโอนเงิน
             const container = document.getElementById('payment-cards-container');
             container.innerHTML = '';
 
@@ -902,7 +824,7 @@
                 container.innerHTML = `
                     <div class="coquette-card rounded-3xl p-8 text-center text-mocha-500">
                         <p class="text-2xl mb-2">🍰</p>
-                        <p>ยังไม่มีช่องทางการโอนเงิน สามารถเพิ่มได้ที่เมนู <strong>"หลังบ้าน (Demo)"</strong> ค่ะ</p>
+                        <p class="text-xs">ยังไม่มีช่องทางการโอนเงิน เพิ่มได้ที่เมนู <strong>หลังบ้าน</strong> ค่ะ</p>
                     </div>
                 `;
                 return;
@@ -910,9 +832,8 @@
 
             appData.payments.forEach((item) => {
                 const card = document.createElement('div');
-                card.className = 'coquette-card rounded-3xl p-5 sm:p-6 relative overflow-hidden';
+                card.className = 'coquette-card rounded-3xl p-4 sm:p-5 relative overflow-hidden';
 
-                // แยกดีไซน์ระหว่างการ์ดบัญชี/วอเล็ท กับ การ์ด QR Code
                 if (item.type === 'qr') {
                     const qrSrc = item.qrImage ? item.qrImage : generateDemoQrDataUrl(item.accountName, item.number);
                     card.innerHTML = `
@@ -923,7 +844,7 @@
                                 </span>
                                 <div>
                                     <h3 class="font-bold text-sm text-mocha-800">${escapeHtml(item.provider)}</h3>
-                                    <p class="text-[11px] text-mocha-500">สแกนจ่ายได้ทุกแอปธนาคาร</p>
+                                    <p class="text-[11px] text-mocha-500">สแกนจ่ายหรือบันทึกรูป QR Code</p>
                                 </div>
                             </div>
                             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-strawberry-100 text-strawberry-500 border border-strawberry-200 shrink-0">
@@ -931,29 +852,27 @@
                             </span>
                         </div>
 
-                        <div class="flex flex-col items-center gap-3.5 bg-cream-100/80 p-3.5 rounded-2xl border border-strawberry-200/80">
-                            <!-- รูป QR Code -->
+                        <div class="flex flex-col items-center gap-3 bg-cream-100/80 p-3.5 rounded-2xl border border-strawberry-200/80">
                             <div class="w-44 rounded-2xl overflow-hidden border-2 border-strawberry-300 bg-white shadow-sm">
                                 <img src="${qrSrc}" alt="QR Code ชำระเงิน" class="w-full h-auto block">
                             </div>
 
-                            <!-- รายละเอียดและปุ่มบันทึกรูป -->
                             <div class="text-center space-y-2 w-full">
                                 <div>
                                     <p class="text-[11px] text-mocha-500">ชื่อบัญชี</p>
                                     <p class="font-semibold text-xs text-mocha-800">${escapeHtml(item.accountName)}</p>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] text-mocha-500">หมายเลขพร้อมเพย์</p>
+                                    <p class="text-[11px] text-mocha-500">หมายเลขพร้อมเพย์ / อ้างอิง</p>
                                     <p class="font-mono font-bold text-base text-mocha-700">${escapeHtml(item.number)}</p>
                                 </div>
                                 <div class="pt-1 flex flex-col gap-2">
-                                    <button onclick="downloadQrCode('${item.id}')" 
+                                    <button onclick="downloadQrCode('${item.id}')"
                                         class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center gap-1.5">
                                         <i class="fa-solid fa-download"></i>
                                         <span>บันทึกรูป QR Code</span>
                                     </button>
-                                    <button onclick="copyText('${escapeJs(item.number)}', 'คัดลอกเลขพร้อมเพย์เรียบร้อยแล้วค่ะ 🎀')" 
+                                    <button onclick="copyText('${escapeJs(item.number)}', 'คัดลอกเลขพร้อมเพย์เรียบร้อยแล้วค่ะ 🎀')"
                                         class="btn-bounce w-full py-2 px-4 rounded-2xl bg-white hover:bg-cream-200 text-mocha-700 border border-strawberry-300 font-medium text-xs flex items-center justify-center gap-1.5">
                                         <i class="fa-regular fa-copy text-strawberry-500"></i>
                                         <span>คัดลอกเลขพร้อมเพย์</span>
@@ -963,11 +882,10 @@
                         </div>
                     `;
                 } else {
-                    // การ์ดบัญชีธนาคาร หรือ TrueMoney Wallet
                     const isWallet = item.type === 'wallet';
                     const btnLabel = isWallet ? 'คัดลอกเบอร์วอเล็ท' : 'คัดลอกเลขบัญชี';
-                    const toastMsg = isWallet 
-                        ? `คัดลอกเบอร์วอเล็ท ${item.number} เรียบร้อยแล้วค่ะ 🧡` 
+                    const toastMsg = isWallet
+                        ? `คัดลอกเบอร์วอเล็ท ${item.number} เรียบร้อยแล้วค่ะ 🧡`
                         : `คัดลอกเลขบัญชี ${item.number} เรียบร้อยแล้วค่ะ 🎀`;
 
                     card.innerHTML = `
@@ -991,14 +909,14 @@
                         <div class="p-3 rounded-2xl bg-cream-100/90 border border-strawberry-200/80 space-y-2.5">
                             <div>
                                 <span class="text-[10px] uppercase tracking-wider text-mocha-500 block">
-                                    ${isWallet ? 'เบอร์โทรศัพท์ TrueMoney' : 'เลขที่บัญชีธนาคาร'}
+                                    ${isWallet ? 'เบอร์วอเล็ท / พร้อมเพย์' : 'เลขที่บัญชีธนาคาร'}
                                 </span>
                                 <span class="font-mono font-bold text-lg text-mocha-800 tracking-wide select-all">
                                     ${escapeHtml(item.number)}
                                 </span>
                             </div>
 
-                            <button onclick="copyText('${escapeJs(item.number)}', '${escapeJs(toastMsg)}')" 
+                            <button onclick="copyText('${escapeJs(item.number)}', '${escapeJs(toastMsg)}')"
                                 class="btn-bounce w-full py-2.5 px-4 rounded-2xl bg-strawberry-400 hover:bg-strawberry-500 text-white font-semibold text-xs shadow-sm flex items-center justify-center gap-1.5">
                                 <i class="fa-regular fa-copy"></i>
                                 <span>${btnLabel}</span>
@@ -1011,9 +929,6 @@
             });
         }
 
-        // ------------------------------------------------------------
-        // 4. การแสดงผลหลังบ้าน (Render Admin Demo View)
-        // ------------------------------------------------------------
         function renderAdminView() {
             document.getElementById('admin-store-name').value = appData.storeName;
             document.getElementById('admin-welcome-msg').value = appData.welcomeMsg;
@@ -1050,9 +965,6 @@
             });
         }
 
-        // ------------------------------------------------------------
-        // 5. ฟังก์ชันการทำงานหลัก (คัดลอก, ดาวน์โหลด QR, สลับหน้า, อัปโหลดรูป)
-        // ------------------------------------------------------------
         function switchView(viewName) {
             const customerSection = document.getElementById('view-customer');
             const adminSection = document.getElementById('view-admin');
@@ -1063,18 +975,17 @@
             if (viewName === 'customer') {
                 customerSection.classList.remove('hidden');
                 adminSection.classList.add('hidden');
-                
                 tabCustomer.className = 'btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all bg-strawberry-400 text-white shadow-sm';
                 tabAdmin.className = 'btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-mocha-700 hover:bg-cream-100 transition-all';
                 renderCustomerView();
             } else {
                 customerSection.classList.add('hidden');
                 adminSection.classList.remove('hidden');
-
                 tabAdmin.className = 'btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all bg-mocha-700 text-white shadow-sm';
                 tabCustomer.className = 'btn-bounce flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-mocha-700 hover:bg-cream-100 transition-all';
                 renderAdminView();
             }
+
             if (scrollArea) {
                 scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -1107,7 +1018,7 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            showToast('กำลังบันทึกรูป QR Code ลงเครื่องค่ะ 📥🎀');
+            showToast('กำลังบันทึกรูป QR Code (.png) ค่ะ 📥🎀');
         }
 
         function handleQuickImageUpload(event, targetType) {
@@ -1134,7 +1045,7 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 document.getElementById(inputId).value = e.target.result;
-                showToast('เลือกรูปภาพสำเร็จ กด "บันทึกข้อมูลหน้าร้าน" ด้านล่างได้เลยค่ะ ✨');
+                showToast('เลือกรูปภาพแล้ว กด "บันทึกข้อมูลหน้าร้าน" ได้เลยค่ะ ✨');
             };
             reader.readAsDataURL(file);
         }
@@ -1231,7 +1142,6 @@
             const iconMap = { bank: '🏦', wallet: '🧡', qr: '📱' };
 
             if (id) {
-                // แก้ไขรายการเดิม
                 const index = appData.payments.findIndex(p => p.id === id);
                 if (index !== -1) {
                     appData.payments[index] = {
@@ -1244,9 +1154,8 @@
                         icon: iconMap[type]
                     };
                 }
-                showToast('แก้ไขช่องทางการโอนเงินเรียบร้อยค่ะ 🎀');
+                showToast('แก้ไขช่องทางเรียบร้อยแล้วค่ะ 🎀');
             } else {
-                // เพิ่มรายการใหม่
                 appData.payments.push({
                     id: 'pay-' + Date.now(),
                     type,
@@ -1256,7 +1165,7 @@
                     qrImage: type === 'qr' ? qrImage : '',
                     icon: iconMap[type]
                 });
-                showToast('เพิ่มช่องทางการโอนเงินใหม่เรียบร้อยค่ะ ✨');
+                showToast('เพิ่มช่องทางใหม่เรียบร้อยแล้วค่ะ ✨');
             }
 
             persistAppData();
@@ -1270,10 +1179,9 @@
             persistAppData();
             renderAdminView();
             renderCustomerView();
-            showToast('ลบช่องทางการโอนเงินเรียบร้อยแล้วค่ะ 🗑️');
+            showToast('ลบช่องทางเรียบร้อยแล้วค่ะ 🗑️');
         }
 
-        // Modal ยืนยันการรีเซ็ต
         function confirmResetDemo() {
             const modal = document.getElementById('reset-modal');
             modal.classList.remove('hidden');
@@ -1293,20 +1201,16 @@
             closeResetModal();
             renderAdminView();
             renderCustomerView();
-            showToast('รีเซ็ตกลับเป็นค่าเริ่มต้น Demo เรียบร้อยแล้วค่ะ 🍓');
+            showToast('รีเซ็ตข้อมูล Demo เรียบร้อยแล้วค่ะ 🍓');
         }
 
-        // ------------------------------------------------------------
-        // 7. ระบบแจ้งเตือน Toast & Helper ป้องกัน XSS
-        // ------------------------------------------------------------
         function showToast(message) {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = 'bg-mocha-800/95 text-cream-50 px-4 py-3 rounded-2xl shadow-lg border border-strawberry-300 text-xs sm:text-sm font-medium text-center backdrop-blur-md transition-all duration-300 transform translate-y-2 opacity-0';
+            toast.className = 'bg-mocha-800/95 text-cream-50 px-4 py-2.5 rounded-2xl shadow-lg border border-strawberry-300 text-xs font-medium text-center backdrop-blur-md transition-all duration-300 transform translate-y-2 opacity-0';
             toast.textContent = message;
 
             container.appendChild(toast);
-
             requestAnimationFrame(() => {
                 toast.classList.remove('translate-y-2', 'opacity-0');
             });
@@ -1314,7 +1218,7 @@
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
                 setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            }, 2800);
         }
 
         function escapeHtml(str) {
@@ -1332,7 +1236,7 @@
             return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         }
 
-        // ระบบปรับขนาดสเกลโทรศัพท์ (Auto Fit Screen / 100% / 85%)
+        // คำนวณขนาดตัวเครื่อง (390px x 780px) ให้ขยายใหญ่เต็มหน้าจอมากที่สุดโดยไม่ตัดขอบและหลบแถบเบราว์เซอร์
         const PHONE_WIDTH = 390;
         const PHONE_HEIGHT = 780;
         let currentScaleMode = 'auto';
@@ -1341,21 +1245,33 @@
             const stage = document.getElementById('phone-scale-stage');
             if (!stage) return;
 
+            const viewportWidth = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+            const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
             let scale = 1;
             if (currentScaleMode === 'auto') {
-                // เว้นขอบซ้าย-ขวา (รวมปุ่มข้างเครื่องและพวงกุญแจ) และขอบบน-ล่าง
-                const availableWidth = window.innerWidth - 76;
-                const availableHeight = window.innerHeight - 84;
+                const isMobileWidth = viewportWidth <= 440;
+                // บนหน้าจอมือถือ (390px-430px) เว้นระยะเพียงพอไม่ให้ขอบเครื่องโดนตัด และเผื่อพื้นที่หลบแถบเบราว์เซอร์บน/ล่าง
+                const horizontalPadding = isMobileWidth ? 20 : 72;
+                const verticalAllowance = isMobileWidth ? 136 : 92;
+
+                const availableWidth = Math.max(240, viewportWidth - horizontalPadding);
+                const availableHeight = Math.max(360, viewportHeight - verticalAllowance);
+
                 const scaleX = availableWidth / PHONE_WIDTH;
                 const scaleY = availableHeight / PHONE_HEIGHT;
-                scale = Math.min(1, scaleX, scaleY);
+
+                scale = Math.min(scaleX, scaleY);
+                if (!isMobileWidth) {
+                    scale = Math.min(1, scale);
+                }
                 scale = Math.max(0.45, Number(scale.toFixed(3)));
             } else {
                 scale = currentScaleMode;
             }
 
             stage.style.transform = `scale(${scale})`;
-            stage.style.marginBottom = scale < 1 ? `-${Math.round(PHONE_HEIGHT * (1 - scale))}px` : '0px';
+            stage.style.marginBottom = scale < 1 ? `-${Math.round(PHONE_HEIGHT * (1 - scale)) - 8}px` : '8px';
         }
 
         function setScaleMode(mode) {
@@ -1368,9 +1284,9 @@
                 const btn = document.getElementById(btnId);
                 if (!btn) return;
                 if (m === mode) {
-                    btn.className = 'btn-bounce px-2.5 py-1 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs';
+                    btn.className = 'btn-bounce px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-strawberry-400 text-white shadow-xs';
                 } else {
-                    btn.className = 'btn-bounce px-2.5 py-1 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100';
+                    btn.className = 'btn-bounce px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-mocha-700 hover:bg-strawberry-100';
                 }
             });
         }
@@ -1389,6 +1305,14 @@
                 applyPhoneScale();
             }
         });
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => {
+                if (currentScaleMode === 'auto') {
+                    applyPhoneScale();
+                }
+            });
+        }
 
         window.addEventListener('DOMContentLoaded', () => {
             renderCustomerView();
